@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // read inputs
         float h = Input.GetAxis("Horizontal");

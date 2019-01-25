@@ -10,10 +10,12 @@ public class MovementManager : MonoBehaviour
     float rotationSpeed = 12f;
     float moveSpeed = 6f;
 
+    private new Rigidbody rigidbody;
+
     // Start is called before the first frame update
     void Awake()
     {
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -22,7 +24,9 @@ public class MovementManager : MonoBehaviour
         ApplyRotationTo(moveDirection);
 
         // Move the controller
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        var movement = moveDirection * moveSpeed * Time.deltaTime;
+
+        rigidbody.MovePosition(transform.position + movement);
     }
 
     private void ApplyRotationTo(Vector3 targetPosition)
@@ -32,7 +36,7 @@ public class MovementManager : MonoBehaviour
         {
             repositioning.y = 0;
             Quaternion targetRotation = Quaternion.LookRotation(repositioning, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime));
         }
     }
 }
