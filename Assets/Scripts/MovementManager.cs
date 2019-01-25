@@ -41,8 +41,11 @@ public class MovementManager : MonoBehaviour {
     private GameObject FindNearestObject(Vector3 center) {
         float radius = 2f;
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        if (hitColliders.Length > 1) { // 0 is Player
-            return hitColliders[1].gameObject;
+        for (int i = 0; i < hitColliders.Length; i++) {
+            Item item = hitColliders[i].gameObject.GetComponent<Item>();
+            if (item) {
+                return hitColliders[i].gameObject;
+            }
         }
         return null;
     }
