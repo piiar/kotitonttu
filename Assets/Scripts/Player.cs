@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         for (int i = 0; i < hitColliders.Length; i++) {
             Item item = hitColliders[i].gameObject.GetComponent<Item>();
-            if (item) {
+            if (item && item.isCarryable) {
                 return hitColliders[i].gameObject;
             }
         }

@@ -10,4 +10,6 @@ public enum ItemType {
 
 public class Item : MonoBehaviour {
     public ItemType itemType;
+    public bool isGoal;
+    public bool isCarryable;
 }
