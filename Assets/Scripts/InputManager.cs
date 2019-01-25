@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
-{
-    private MovementManager movementManager;
+public class InputManager : MonoBehaviour {
+    private Player player;
     private float turnSmoothing = 0.1f;
     private float smoothX = 0;
     private float smoothY = 0;
@@ -12,14 +11,12 @@ public class InputManager : MonoBehaviour
     private float smoothYvelocity = 0;
 
     // Start is called before the first frame update
-    void Awake()
-    {
-        movementManager = GetComponent<MovementManager>();
+    void Awake() {
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         // read inputs
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -33,7 +30,7 @@ public class InputManager : MonoBehaviour
         bool interaction = Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1");
         Vector3 moveDirection = v * Vector3.forward + h * Vector3.right;
 
-        movementManager.Move(moveDirection, interaction);
+        player.Move(moveDirection, interaction);
     }
 }
 

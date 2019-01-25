@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementManager : MonoBehaviour {
+public class Player : MonoBehaviour {
     Vector3 movement;
 
     float rotationSpeed = 12f;
