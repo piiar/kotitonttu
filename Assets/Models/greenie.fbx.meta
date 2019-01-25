@@ -1,20 +1,26 @@
 fileFormatVersion: 2
-guid: 381eb94ec02742346a73b640588e5158
+guid: e0f34a4cab0d0f047a0982cd5f2db8e9
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: interiorMaterial
+    2100000: interiorTransp
+    2100002: interiorMaterial
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Items.005
+    4300000: Items.012
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: interiorMaterial
     second: {fileID: 2100000, guid: ab58cc0335841d54b91b751baa118e80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: interiorTransp
+    second: {fileID: 2100000, guid: dbff5a98c72c29f4dac989e590f7f1f4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
