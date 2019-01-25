@@ -5,6 +5,11 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private MovementManager movementManager;
+    private float turnSmoothing = 0.1f;
+    private float smoothX = 0;
+    private float smoothY = 0;
+    private float smoothXvelocity = 0;
+    private float smoothYvelocity = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,7 +23,14 @@ public class InputManager : MonoBehaviour
         // read inputs
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        bool interaction = Input.GetKeyDown(KeyCode.Space);
+
+        // float mouseX = Input.GetAxis("Mouse X");
+        // float mouseY = Input.GetAxis("Mouse Y");
+
+        // smoothX = Mathf.SmoothDamp(smoothX, mouseX, ref smoothXvelocity, turnSmoothing);
+        // smoothY = Mathf.SmoothDamp(smoothY, mouseY, ref smoothYvelocity, turnSmoothing);
+
+        bool interaction = Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1");
         Vector3 moveDirection = v * Vector3.forward + h * Vector3.right;
 
         movementManager.Move(moveDirection, interaction);
