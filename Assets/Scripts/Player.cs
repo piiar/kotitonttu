@@ -69,6 +69,10 @@ public class Player : MonoBehaviour {
                 case ItemType.Fridge:
                     action = new FridgeAction();
                     break;
+                case ItemType.Drawer:
+                    var drawer = item.GetComponent<DrawerScript>();
+                    action = new ActionInstance(drawer.ItemAction);
+                    break;
                 case ItemType.Furniture:
                     break;
             }

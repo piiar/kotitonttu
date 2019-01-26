@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &830247884
+--- !u!1 &8223432604467008107
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6778470087416772757}
-  - component: {fileID: 938462464704414959}
-  - component: {fileID: 7082975596537173707}
-  - component: {fileID: 830247888}
-  - component: {fileID: 830247889}
-  - component: {fileID: 5343911226013637110}
+  - component: {fileID: 7618894049111617165}
+  - component: {fileID: 7795781718330537356}
+  - component: {fileID: 8638660188523704603}
+  - component: {fileID: 7885669145160229242}
+  - component: {fileID: 6302197965715103540}
   m_Layer: 0
-  m_Name: drawer
+  m_Name: RepairItem
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6778470087416772757
+--- !u!4 &7618894049111617165
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830247884}
-  m_LocalRotation: {x: 0.000000081460335, y: -0.0000003258414, z: 2.6543151e-14, w: 1}
-  m_LocalPosition: {x: -8.42, y: 0.0000013153402, z: 8.22}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 8223432604467008107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &938462464704414959
+--- !u!33 &7795781718330537356
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830247884}
-  m_Mesh: {fileID: 4300000, guid: 22d40e085ea6822488f9e67a22b2bd5d, type: 3}
---- !u!23 &7082975596537173707
+  m_GameObject: {fileID: 8223432604467008107}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8638660188523704603
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830247884}
+  m_GameObject: {fileID: 8223432604467008107}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -60,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab58cc0335841d54b91b751baa118e80, type: 2}
+  - {fileID: 2100000, guid: 65884abb1913e2640a78fe2bc2519263, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,54 +79,40 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &830247888
+--- !u!65 &7885669145160229242
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830247884}
+  m_GameObject: {fileID: 8223432604467008107}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5536085, y: 1.4897403, z: 0.82716715}
-  m_Center: {x: 0.044929564, y: 0.7321829, z: 0.030820355}
---- !u!114 &830247889
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6302197965715103540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830247884}
+  m_GameObject: {fileID: 8223432604467008107}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2315e827ef374113b10574538717163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 8
+  itemType: 9
   isPickedUp: 0
   isGoal: 0
-  isCarryable: 0
+  isCarryable: 1
   isFixable: 0
-  isUsable: 1
-  maxValue: 12
-  currentValue: 12
+  isUsable: 0
+  maxValue: 0
+  currentValue: 0
   damageFactor: 1
   fixFactor: 1
-  timeToDamage: 2
-  countdownToDamage: 2
---- !u!114 &5343911226013637110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830247884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb38c05a0ca76b04c9257f5a5c72c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RepairItem: {fileID: 8223432604467008107, guid: 6d0425d844bf2764182aeb5ecb97b67b,
-    type: 3}
+  timeToDamage: 3
+  countdownToDamage: 3
