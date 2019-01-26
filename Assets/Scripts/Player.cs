@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
             if (action != null) {
                 action.Execute(this.gameObject, item);
             }
-            else if (item.isCarryable) {
+            else if (!carriedObject && item.isCarryable) {
                 // Pick up
                 PickupItem(item);
 
