@@ -33,6 +33,10 @@ public class Item : MonoBehaviour {
     public double timeToDamage = 3f;
     public double countdownToDamage = 3f;
 
+    void LateUpdate(){
+        UIManager.instance.UpdateProgessIndicatorPos(transform.name, Camera.main.WorldToScreenPoint(transform.position));
+    }
+
     public void UpdateCountdownToDamage() {
         if (isPickedUp) {
             return;
@@ -68,6 +72,7 @@ public class Item : MonoBehaviour {
         if (currentValue < maxValue) {
             currentValue += fixFactor;
             Debug.Log("Item fixed, value left: " + currentValue + "/" + maxValue);
+            UIManager.instance.UpdateProgessIndicator(transform.name, currentValue / maxValue);
             if (currentValue > maxValue) {
                 currentValue = maxValue;
             }

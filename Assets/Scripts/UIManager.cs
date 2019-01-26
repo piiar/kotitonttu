@@ -62,6 +62,15 @@ public class UIManager : MonoBehaviour
         }       
     }
 
+    public void UpdateProgessIndicatorPos(string name, Vector3 v)
+    {
+        healthIndicatorCache.TryGetValue(name, out ProgressIndicator healthbar);
+        if (healthbar)
+        {
+            healthbar.UpdateBarPos(v);
+        }
+    }
+
     public void OpenThinkBubble(Transform t, ItemType type)
     {
         actionIndicatorCache.TryGetValue(t.name, out RectTransform rect);

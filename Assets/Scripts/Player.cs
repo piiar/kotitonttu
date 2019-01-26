@@ -110,7 +110,8 @@ public class Player : MonoBehaviour {
             StartCoroutine(togglePickupAnimation(() => {
                 animator.SetLayerWeight(1, 0f);
                 carriedObject.transform.SetParent(null);
-                carriedObject.GetComponent<Item>().DroppedDown();
+                Item _item = carriedObject.GetComponent<Item>();
+                _item.DroppedDown();
                 carriedObject = null;
                 animationFreezeActive = false;
             }));
