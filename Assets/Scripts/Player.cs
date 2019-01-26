@@ -22,11 +22,17 @@ public class Player : MonoBehaviour {
 
     private bool animationFreezeActive;
 
+    private Transform carryItemTransform;
+
+    public Vector3 CarryItemPosition => carryItemTransform.position;
+
     // Start is called before the first frame update
     void Awake() {
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         itemFinder = GetComponentInChildren<ItemTrigger>();
+
+        carryItemTransform = transform.Find("CarryItemPosition");
     }
 
     // Update is called once per frame
@@ -80,7 +86,8 @@ public class Player : MonoBehaviour {
                     action = dishtable.PlayerAction;
                     break;
                 case ItemType.Fridge:
-                    action = new FridgeAction().AsPlayerAction();
+                    var fridge = item.GetComponent<FridgeScript>();
+                    action = fridge.PlayerAction;
                     break;
                 case ItemType.Drawer:
                     var drawer = item.GetComponent<DrawerScript>();
