@@ -13,7 +13,8 @@ public enum ItemType {
     Dishtable = 6,
     Fridge = 7,
     Drawer = 8,
-    RepairItem = 9
+    RepairItem = 9,
+    SleepingSpot = 10
 }
 
 public class Item : MonoBehaviour {
