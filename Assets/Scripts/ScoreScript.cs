@@ -11,7 +11,12 @@ public class ScoreScript : MonoBehaviour {
     public static int HealthMax;
 
     private List<Item> items;
-    
+    float degree = 90f;
+    public Transform secondsTransform;
+
+    float elapsedLevelTime = 0f;
+    const float levelTime = 2 * 3600f;
+
     // Start is called before the first frame update
     void Start() {
         Score = 0;
@@ -54,5 +59,12 @@ public class ScoreScript : MonoBehaviour {
 
         NumDamagedGoals = tickNumDamagedGoals;
         NumDestroyedObjects = tickDestroyedObjects;
+
+        if(elapsedLevelTime <= levelTime){
+            elapsedLevelTime += 6f * Time.deltaTime;
+            degree -= elapsedLevelTime;
+            secondsTransform.localRotation =
+                Quaternion.Euler(0f, 0f, degree);
+        }
     }
 }
