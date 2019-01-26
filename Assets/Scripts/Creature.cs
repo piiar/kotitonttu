@@ -45,8 +45,7 @@ public class Creature : MonoBehaviour {
 
             UIManager.instance.CloseThinkBubble(transform.name);
         }
-        if(goalTarget)
-        {
+        if (goalTarget) {
             DoRepeatingAction(goalTarget);
         }
 
@@ -55,19 +54,20 @@ public class Creature : MonoBehaviour {
 
     private void RandomizeGoal() {
         Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal && item.currentValue > 0).ToArray();
-        if (items.Length > 1)
-        {
-            do
-            {
+        if (items.Length > 1) {
+            do {
                 int index = Random.Range(0, items.Length);
                 goal = items[index].gameObject.transform;
             } while (goal == previousGoal);
         }
-        else if(items.Length == 0)
-        {
+        else if (items.Length == 1) {
+            goal = items[0].gameObject.transform;
+        }
+        else if (items.Length == 0) {
             goal = null;
         }
-        
+        previousGoal = goal;
+
         if (goal) {
             agent.SetDestination(goal.position);
             Debug.Log("Next goal: " + goal.gameObject.name);
@@ -75,6 +75,12 @@ public class Creature : MonoBehaviour {
             Item foundItem = goal.GetComponent<Item>();
             UIManager.instance.OpenThinkBubble(transform, foundItem.itemType);
         }
+    }
+
+    public void SetNewGoal() {
+        goalTarget = null;
+        timeUntilGoalChange = Random.Range(10f, 15f);
+        RandomizeGoal();
     }
 
     private void DoAction(GameObject goalObject) {
@@ -98,22 +104,18 @@ public class Creature : MonoBehaviour {
         }
     }
 
-    private void DoRepeatingAction(GameObject goalObject)
-    {
+    private void DoRepeatingAction(GameObject goalObject) {
         Action action = null;
         Item item = goalObject.GetComponent<Item>();
-        if (item == null)
-        {
+        if (item == null) {
             return;
         }
-        switch (item.itemType)
-        {
+        switch (item.itemType) {
             case ItemType.Furniture:
                 action = new FurnitureCatAction();
                 break;
         }
-        if (action != null)
-        {
+        if (action != null) {
             action.Execute(this.gameObject, item);
         }
     }

@@ -4,11 +4,11 @@ using System.Collections;
 public class FoodbowlPlayerAction : Action {
 
     public void Execute(GameObject actor, Item target) {
-        Debug.Log("Player fills foodbowl");
         if (target.itemType == ItemType.Foodbowl && target.currentValue < target.maxValue) {
             Player player = actor.GetComponent<Player>();
             Item carriedItem = player.GetCarriedItem();
             if (carriedItem && carriedItem.itemType == ItemType.Food) {
+                Debug.Log("Player fills foodbowl");
                 target.HandleFixing();
                 carriedItem.gameObject.transform.parent = null;
                 // TODO find fridge location
