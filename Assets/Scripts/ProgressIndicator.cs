@@ -4,10 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ProgressIndicator : MonoBehaviour {
-
-    private float max;
-    private float current = 1f;
-
     public RectTransform baseRect;
     public RectTransform healthRect;
 
@@ -17,9 +13,16 @@ public class ProgressIndicator : MonoBehaviour {
 
     // Update is called once per frame
     public void UpdateBar(float percent) {
-        current *= percent;
-        //rect.rect.Set(0, 0, current, rect.rect.height);
-        healthRect.localScale = new Vector3(current, 1, 1);
+        if (percent == 1)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+        
+        rect.localScale = new Vector3(percent, 1, 1);
     }
 
     public void UpdateBarPos(Vector3 position)

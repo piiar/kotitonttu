@@ -60,7 +60,7 @@ public class Item : MonoBehaviour {
         if (currentValue > 0) {
             currentValue -= damageFactor;
             Debug.Log("Item damaged, value left: " + currentValue + "/" + maxValue);
-            UIManager.instance.UpdateProgessIndicator(transform.name, currentValue/maxValue);
+            UIManager.instance.UpdateProgessIndicator(transform.name, currentValue / maxValue);
             if (currentValue < 0) {
                 Debug.Log("Item destroyed");
                 currentValue = 0;
@@ -76,6 +76,7 @@ public class Item : MonoBehaviour {
             if (currentValue > maxValue) {
                 currentValue = maxValue;
             }
+            UIManager.instance.UpdateProgessIndicator(transform.name, currentValue / maxValue);
         }
     }
 
@@ -89,7 +90,7 @@ public class Item : MonoBehaviour {
     }
 
     internal void PlayerRepairAction(Player player, Item item) {
-        if (currentValue == maxValue) {
+        if (currentValue == 0 || currentValue == maxValue) {
             return;
         }
         if (fixFactor == 0) {

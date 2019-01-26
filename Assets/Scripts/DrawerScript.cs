@@ -14,8 +14,7 @@ public class DrawerScript : MonoBehaviour {
         }
 
         var repairGameObject = GameObject.Instantiate(RepairItem);
-        repairGameObject.transform.position = player
-                .gameObject.transform.position;
+        repairGameObject.transform.position = player.CarryItemPosition;
         var repairItem = repairGameObject.GetComponent<Item>();
 
         player.SetCarriedItem(repairItem);

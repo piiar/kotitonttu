@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5156145716264441213}
   - component: {fileID: 1243846698}
   - component: {fileID: 1243846699}
+  - component: {fileID: 2406804640529739975}
   m_Layer: 0
   m_Name: fridge
   m_TagString: Item
@@ -105,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 7
+  isScoreable: 0
   isPickedUp: 0
   isGoal: 0
   isCarryable: 0
@@ -112,3 +114,21 @@ MonoBehaviour:
   isUsable: 1
   maxValue: 20
   currentValue: 20
+  damageFactor: 1
+  fixFactor: 1
+  timeToDamage: 3
+  countdownToDamage: 3
+--- !u!114 &2406804640529739975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243846694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d6e86f7757dab4c8eef3ff6e8a5b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodObject: {fileID: 8223432604467008107, guid: ad85e9dc3992f438082475d99f3bf179,
+    type: 3}

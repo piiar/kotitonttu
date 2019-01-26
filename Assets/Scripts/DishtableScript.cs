@@ -96,8 +96,7 @@ public class DishtableScript : MonoBehaviour {
         Animate();
 
         var waterGameObject = GameObject.Instantiate(WaterObjectForPlayer);
-        waterGameObject.transform.position = player
-                .gameObject.transform.position;
+        waterGameObject.transform.position = player.CarryItemPosition;
         var waterItem = waterGameObject.GetComponent<Item>();
 
         player.SetCarriedItem(waterItem);
