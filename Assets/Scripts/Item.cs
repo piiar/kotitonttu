@@ -25,8 +25,8 @@ public class Item : MonoBehaviour {
     public bool isCarryable;
     public bool isFixable;
     public bool isUsable;
-    public int maxValue;
-    public int currentValue;
+    public float maxValue;
+    public float currentValue;
     public int damageFactor = 1;
     public int fixFactor = 1;
     public double timeToDamage = 3f;
@@ -55,6 +55,7 @@ public class Item : MonoBehaviour {
         if (currentValue > 0) {
             currentValue -= damageFactor;
             Debug.Log("Item damaged, value left: " + currentValue + "/" + maxValue);
+            UIManager.instance.UpdateProgessIndicator(transform.name, currentValue/maxValue);
             if (currentValue < 0) {
                 Debug.Log("Item destroyed");
                 currentValue = 0;

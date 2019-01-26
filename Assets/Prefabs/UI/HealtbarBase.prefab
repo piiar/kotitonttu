@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8145098068508498122}
   - component: {fileID: 1147340815463600843}
   - component: {fileID: 3904108476702641918}
+  - component: {fileID: 1588709286951785807}
   m_Layer: 5
   m_Name: HealtbarBase
   m_TagString: Untagged
@@ -33,9 +34,9 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 120.7, y: 101.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 530.7, y: 357.2}
   m_SizeDelta: {x: 32, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1147340815463600843
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1588709286951785807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322271606314670419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73b83a78b1ae4be9af442f05ba8a731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rect: {fileID: 4544681804108257575}
 --- !u!1 &7499158966226079515
 GameObject:
   m_ObjectHideFlags: 0

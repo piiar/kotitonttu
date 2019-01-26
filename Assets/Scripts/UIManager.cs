@@ -1,20 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     Camera cam;
+
+    public RectTransform panel;
 
     public Dictionary<string, RectTransform> actionIndicatorCache = new Dictionary<string, RectTransform>();
     public RectTransform[] actionIndicators;
 
-    [SerializeField]
-    int indicatorCount;
-    [SerializeField]
-    int nextIndex;
+    public Dictionary<string, ProgressIndicator> healthIndicatorCache = new Dictionary<string, ProgressIndicator>();
+
+    int actionIndicatorCount;
+    int nextActionIndicatorIndex;
+
+    public GameObject healthIndicatorPrefab;
 
     private static UIManager _instance;
     public static UIManager instance
@@ -36,14 +40,30 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
-        indicatorCount = actionIndicators.Length;
+        actionIndicatorCount = actionIndicators.Length;
 
-        for (int i = 0; i < indicatorCount; i++) actionIndicators[i].gameObject.SetActive(false);
+        for (int i = 0; i < actionIndicatorCount; i++) actionIndicators[i].gameObject.SetActive(false);
+
+        Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal && item.currentValue > 0).ToArray();
+
+        foreach(Item item in items){
+            healthIndicatorCache[item.name] = Instantiate(healthIndicatorPrefab).GetComponent<ProgressIndicator>();
+            healthIndicatorCache[item.name].gameObject.transform.SetParent(panel);
+            Vector3 screenPos = cam.WorldToScreenPoint(item.transform.position);
+            healthIndicatorCache[item.name].GetComponent<RectTransform>().anchoredPosition = new Vector2(screenPos.x + 15, screenPos.y + 25);
+        }
+    }
+
+    public void UpdateProgessIndicator(string name, float amount) {
+        healthIndicatorCache.TryGetValue(name, out ProgressIndicator healthbar);
+        if (healthbar)
+        {
+            healthbar.UpdateBar(amount);
+        }       
     }
 
     public void OpenThinkBubble(Transform t, ItemType type)
     {
-
         actionIndicatorCache.TryGetValue(t.name, out RectTransform rect);
 
         if(rect) {
@@ -53,9 +73,9 @@ public class UIManager : MonoBehaviour
             rect.GetComponent<ActionIndicator>().SetAction(type);
         }
         else {
-            if(nextIndex < indicatorCount) {
-                actionIndicatorCache[t.name] = actionIndicators[nextIndex++];
-                
+            if(nextActionIndicatorIndex < actionIndicatorCount) {
+                actionIndicatorCache[t.name] = actionIndicators[nextActionIndicatorIndex++];
+
                 RectTransform _rect = actionIndicatorCache[t.name];
                 _rect.gameObject.SetActive(true);
 
