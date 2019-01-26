@@ -18,6 +18,7 @@ public enum ItemType {
 
 public class Item : MonoBehaviour {
     public ItemType itemType;
+    public bool isScoreable;
     public bool isPickedUp = false;
     public bool isGoal;
     public bool isCarryable;

@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
+  isScoreable: 1
   isPickedUp: 0
   isGoal: 1
   isCarryable: 1

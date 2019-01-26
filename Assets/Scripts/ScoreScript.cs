@@ -33,8 +33,11 @@ public class ScoreScript : MonoBehaviour {
         int tickNumDamagedGoals = 0;
         int tickDestroyedObjects = 0;
         foreach (var item in items) {
-            tickScore += item.currentValue;
-            tickScoreMax += item.maxValue;
+            if (item.isScoreable)
+            {
+                tickScore += item.currentValue;
+                tickScoreMax += item.maxValue;
+            }
 
             if (item.currentValue < item.maxValue) {
                 tickNumDamagedGoals++;
