@@ -62,7 +62,7 @@ public class ScoreScript : MonoBehaviour {
 
         if(elapsedLevelTime <= levelTime){
             elapsedLevelTime += 6f * Time.deltaTime;
-            degree -= elapsedLevelTime;
+            degree -= 6f * Time.deltaTime;
             secondsTransform.localRotation =
                 Quaternion.Euler(0f, 0f, degree);
         }
