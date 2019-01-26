@@ -19,7 +19,10 @@ public class ScoreGuiScript : MonoBehaviour {
          pos = drawText(pos, "Score: " + (long)ScoreScript.Score);
          pos = drawText(pos, "Score max: " + (long)ScoreScript.ScoreMax);
          pos = drawText(pos, "Delta: " + (long)(ScoreScript.ScoreMax - ScoreScript.Score));
-         pos = drawText(pos, "Damged objects: " + ScoreScript.NumDamagedGoals);
+         pos = drawText(pos, "Damaged objects: " + ScoreScript.NumDamagedGoals);
+         pos = drawText(pos, "Household health: " + ScoreScript.Health);
+         pos = drawText(pos, "Household health max: " + ScoreScript.HealthMax);
+         pos = drawText(pos, "Destroyed items: " + ScoreScript.NumDestroyedObjects);
     }
 
     // Draw text and increment Y position

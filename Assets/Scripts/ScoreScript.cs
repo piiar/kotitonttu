@@ -6,6 +6,9 @@ public class ScoreScript : MonoBehaviour {
     public static double Score;
     public static double ScoreMax;
     public static int NumDamagedGoals;
+    public static int NumDestroyedObjects;
+    public static int Health;
+    public static int HealthMax;
 
     private List<Item> items;
     
@@ -25,21 +28,28 @@ public class ScoreScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        double tickScore = 0;
-        double tickScoreMax = 0;
+        int tickScore = 0;
+        int tickScoreMax = 0;
         int tickNumDamagedGoals = 0;
+        int tickDestroyedObjects = 0;
         foreach (var item in items) {
-            double itemScore = item.currentValue / item.maxValue;
-            tickScore += itemScore;
-            tickScoreMax += 1;
+            tickScore += item.currentValue;
+            tickScoreMax += item.maxValue;
 
             if (item.currentValue < item.maxValue) {
                 tickNumDamagedGoals++;
             }
+            if (item.currentValue <= 0) {
+                tickDestroyedObjects++;
+            }
         }
+        Health = tickScore;
+        HealthMax = tickScoreMax;
 
         Score += tickScore * Time.deltaTime;
         ScoreMax += tickScoreMax * Time.deltaTime;
+
         NumDamagedGoals = tickNumDamagedGoals;
+        NumDestroyedObjects = tickDestroyedObjects;
     }
 }
