@@ -79,6 +79,10 @@ public class DishtableScript : MonoBehaviour {
     }
 
     public void Animate() {
+        if (animating) {
+            return;
+        }
+
         animationState = 0;
         animating = true;
     }

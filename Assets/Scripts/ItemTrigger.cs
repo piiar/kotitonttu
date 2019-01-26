@@ -12,7 +12,7 @@ public class ItemTrigger : MonoBehaviour
         {
             print("enter " + other.name);
             Item item = other.gameObject.GetComponent<Item>();
-            if (item && (item.isCarryable || item.isFixable))
+            if (item && (item.isCarryable || item.isFixable || item.isUsable))
             {
                 LastItem = item;
             }
@@ -20,6 +20,7 @@ public class ItemTrigger : MonoBehaviour
             {
                 LastItem = null;
             }
+            print("LastItem: " + LastItem);
         }
     }
 

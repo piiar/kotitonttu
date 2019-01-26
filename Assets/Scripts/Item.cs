@@ -8,8 +8,8 @@ public enum ItemType {
     CardboardBox = 2,
     Foodbowl = 3,
     Food = 4,
-    Litterbox = 5
-
+    Litterbox = 5,
+    Dishtable = 6
 }
 
 public class Item : MonoBehaviour {
@@ -18,6 +18,7 @@ public class Item : MonoBehaviour {
     public bool isGoal;
     public bool isCarryable;
     public bool isFixable;
+    public bool isUsable;
     public int maxValue;
     public int currentValue;
     private int damageFactor = 1;

@@ -63,6 +63,9 @@ public class Player : MonoBehaviour {
                 case ItemType.Foodbowl:
                     action = new FoodbowlPlayerAction();
                     break;
+                case ItemType.Dishtable:
+                    action = new DishtableAction();
+                    break;
                 case ItemType.Furniture:
                     break;
             }
