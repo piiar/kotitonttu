@@ -64,8 +64,10 @@ public class Creature : MonoBehaviour {
             goal = null;
         }
         
-        agent.SetDestination(goal.position);
-        Debug.Log("Next goal: " + goal.gameObject.name);
+        if (goal) {
+            agent.SetDestination(goal.position);
+            Debug.Log("Next goal: " + goal.gameObject.name);
+        }
     }
 
     private void DoAction(GameObject goalObject) {
