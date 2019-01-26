@@ -84,7 +84,7 @@ public class Creature : MonoBehaviour {
     }
 
     private void DoAction(GameObject goalObject) {
-        Action action = null;
+        CreatureAction action = null;
         Item item = goalObject.GetComponent<Item>();
         if (item == null) {
             return;
@@ -93,14 +93,15 @@ public class Creature : MonoBehaviour {
             case ItemType.CardboardBox:
                 break;
             case ItemType.Furniture:
-                action = new FurnitureCatAction();
+                action = new FurnitureCatAction().AsCreatureAction();
                 break;
             case ItemType.Foodbowl:
-                action = new FoodbowlCatAction();
+                var bowl = item.GetComponent<BowlScript>();
+                action = bowl.CatAction;
                 break;
         }
         if (action != null) {
-            action.Execute(this.gameObject, item);
+            action(this, item);
         }
     }
 

@@ -62,10 +62,16 @@ public class Player : MonoBehaviour {
             PlayerAction action = null;
             switch (item.itemType) {
                 case ItemType.Foodbowl:
-                    action = new FoodbowlPlayerAction().AsPlayerAction();
+                    // This if check shouldn't be necessary as bowls
+                    // don't have any normal use action.
+                    if (HasItem(ItemType.Water) || HasItem(ItemType.Food)) {
+                        var bowl = item.GetComponent<BowlScript>();
+                        action = bowl.PlayerAction;
+                    }
                     break;
                 case ItemType.Dishtable:
-                    action = new DishtableAction().AsPlayerAction();
+                    var dishtable = item.GetComponent<DishtableScript>();
+                    action = dishtable.PlayerAction;
                     break;
                 case ItemType.Fridge:
                     action = new FridgeAction().AsPlayerAction();
@@ -75,7 +81,9 @@ public class Player : MonoBehaviour {
                     action = drawer.PlayerAction;
                     break;
                 case ItemType.Furniture:
-                    if (HasRepairItem()) {
+                    // Without this check action is always defined
+                    // and furniture can't be picked up.
+                    if (HasItem(ItemType.Repair)) {
                         action = item.PlayerRepairAction;
                     }
                     break;
@@ -101,8 +109,8 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public bool HasRepairItem() {
-        return carriedObject && GetCarriedItem().itemType == ItemType.RepairItem;
+    public bool HasItem(ItemType itemType) {
+        return carriedObject && GetCarriedItem().itemType == itemType;
     }
 
     IEnumerator togglePickupAnimation(System.Action callback) {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1397876236192676225}
   - component: {fileID: 5586783467368610024}
   - component: {fileID: 1397876236192676227}
+  - component: {fileID: 7990868930413993447}
   m_Layer: 0
   m_Name: Foodbowl
   m_TagString: Untagged
@@ -110,14 +111,27 @@ MonoBehaviour:
   isPickedUp: 0
   isGoal: 1
   isCarryable: 0
-  isFixable: 1
-  isUsable: 0
+  isFixable: 0
+  isUsable: 1
   maxValue: 2
   currentValue: 2
   damageFactor: 1
   fixFactor: 1
   timeToDamage: 0
   countdownToDamage: 0
+--- !u!114 &7990868930413993447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397876236192676236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f207795116fd44d8f231fd19a9c950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bowltype: 0
 --- !u!1 &8392564788136479103
 GameObject:
   m_ObjectHideFlags: 0

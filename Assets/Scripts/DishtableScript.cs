@@ -6,6 +6,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class DishtableScript : MonoBehaviour {
     public GameObject WaterObject;
+    public GameObject WaterObjectForPlayer;
 
     // Y coords for water object
     public float WaterLevelLow;
@@ -85,6 +86,21 @@ public class DishtableScript : MonoBehaviour {
 
         animationState = 0;
         animating = true;
+    }
+
+    internal void PlayerAction(Player player, Item item) {
+        if (player.GetCarriedItem() != null) {
+            return;
+        }
+
+        Animate();
+
+        var waterGameObject = GameObject.Instantiate(WaterObjectForPlayer);
+        waterGameObject.transform.position = player
+                .gameObject.transform.position;
+        var waterItem = waterGameObject.GetComponent<Item>();
+
+        player.SetCarriedItem(waterItem);
     }
 }
 
