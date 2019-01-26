@@ -54,7 +54,11 @@ public class Creature : MonoBehaviour {
 
     private void DoAction(GameObject goalObject) {
         Action action = null;
-        switch (goalObject.GetComponent<Item>().itemType) {
+        Item item = goalObject.GetComponent<Item>();
+        if (item == null) {
+            return;
+        }
+        switch (item.itemType) {
             case ItemType.CardboardBox:
                 break;
             case ItemType.Furniture:
@@ -65,7 +69,7 @@ public class Creature : MonoBehaviour {
                 break;
         }
         if (action != null) {
-            action.Execute(this.gameObject, goalObject);
+            action.Execute(this.gameObject, item);
         }
     }
 }

@@ -33,7 +33,13 @@ public class Player : MonoBehaviour {
 
         rigidbody.MovePosition(transform.position + movement);
 
-        HandleInteraction(interaction);
+        if (interaction) {
+            HandleInteraction();
+        }
+
+        // Prevent the player for spinning due to physics issues when moving stuff and colliding
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
 
         animator.SetFloat(speedHash, Mathf.Min(moveDirection.magnitude, 1f));
     }
@@ -47,34 +53,46 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private GameObject FindNearestObject(Vector3 center) {
+    private Item FindNearestItem(Vector3 center) {
         float radius = 2f;
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         for (int i = 0; i < hitColliders.Length; i++) {
             Item item = hitColliders[i].gameObject.GetComponent<Item>();
-            if (item && item.isCarryable) {
-                return hitColliders[i].gameObject;
+            if (item && (item.isCarryable || item.isFixable)) {
+                return item;
             }
         }
         return null;
     }
 
-    private void HandleInteraction(bool interaction) {
-        if (interaction) {
-            if (carriedObject != null) {
-                // Drop
-                carriedObject.transform.SetParent(null);
-                carriedObject = null;
+    private void HandleInteraction() {
+        if (carriedObject != null) {
+            // Drop
+            carriedObject.transform.SetParent(null);
+            carriedObject = null;
+        }
+        else {
+            // Pick up
+            Item item = FindNearestItem(transform.position);
+            if (item && item.isCarryable) {
+                item.gameObject.transform.SetParent(transform);
+                carriedObject = item.gameObject;
                 animator.SetBool(pickupHash, false);
             }
-            else {
-                // Pick up
-                GameObject obj = FindNearestObject(transform.position);
-                if (obj) {
-                    obj.transform.SetParent(transform);
-                    carriedObject = obj;
+            else if (item) {
+                Action action = null;
+                switch (item.itemType) {
+                    case ItemType.Foodbowl:
+                        action = new FoodbowPlayerAction();
+                        break;
+                    case ItemType.Furniture:
+                        break;
+
 
                     animator.SetBool(pickupHash, true);
+                }
+                if (action != null) {
+                    action.Execute(this.gameObject, item);
                 }
             }
         }
