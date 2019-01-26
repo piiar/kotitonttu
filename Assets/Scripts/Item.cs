@@ -93,7 +93,7 @@ public class Item : MonoBehaviour {
         }
 
         HandleFixing();
-        GameObject.Destroy(player.GetCarriedItem());
+        GameObject.Destroy(player.GetCarriedItem().gameObject);
         player.SetCarriedItem(null);
     }
 }
