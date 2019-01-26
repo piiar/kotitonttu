@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemType {
-    CatTree = 0,
-    CardboardBox = 1,
-    RubberDuck = 2
+    Furniture = 0,
+    CatTree = 1,
+    CardboardBox = 2,
+    RubberDuck = 3
 }
 
 public class Item : MonoBehaviour {
     public ItemType itemType;
     public bool isGoal;
     public bool isCarryable;
+    public int maxValue;
+    public int currentValue;
 }
