@@ -46,7 +46,19 @@ public class Creature : MonoBehaviour {
     }
 
     private void DoAction(GameObject goalObject) {
-        Action action = new FoodbowlCatAction();
-        action.Execute(this.gameObject, goalObject);
+        Action action = null;
+        switch (goalObject.GetComponent<Item>().itemType) {
+            case ItemType.CardboardBox:
+                break;
+            case ItemType.Furniture:
+                action = new FurnitureCatAction();
+                break;
+            case ItemType.Foodbowl:
+                action = new FoodbowlCatAction();
+                break;
+        }
+        if (action != null) {
+            action.Execute(this.gameObject, goalObject);
+        }
     }
 }
