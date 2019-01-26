@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FoodbowPlayerAction : Action {
+public class FoodbowlPlayerAction : Action {
 
     public void Execute(GameObject actor, Item target) {
         Debug.Log("Player fills foodbowl");
-        // TODO check if player carries food
         if (target.itemType == ItemType.Foodbowl && target.currentValue == 0) {
-            target.HandleFixing();
+            Player player = actor.GetComponent<Player>();
+            Item carriedItem = player.GetCarriedItem();
+            if (carriedItem.itemType == ItemType.Food) {
+                target.HandleFixing();
+                player.ResetFood();
+            }
         }
 
     }

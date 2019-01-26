@@ -58,7 +58,7 @@ public class Player : MonoBehaviour {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         for (int i = 0; i < hitColliders.Length; i++) {
             Item item = hitColliders[i].gameObject.GetComponent<Item>();
-            if (item && (item.isCarryable || item.isFixable)) {
+            if (item && (item.isCarryable || item.isFixable) && (carriedObject != item.gameObject)) {
                 return item;
             }
         }
@@ -66,35 +66,48 @@ public class Player : MonoBehaviour {
     }
 
     private void HandleInteraction() {
-        if (carriedObject != null) {
-            // Drop
-            carriedObject.transform.SetParent(null);
-            carriedObject = null;
-        }
-        else {
-            // Pick up
-            Item item = FindNearestItem(transform.position);
-            if (item && item.isCarryable) {
+        Item item = FindNearestItem(transform.position);
+
+        if (item) {
+            Action action = null;
+            switch (item.itemType) {
+                case ItemType.Foodbowl:
+                    action = new FoodbowlPlayerAction();
+                    break;
+                case ItemType.Furniture:
+                    break;
+
+                    animator.SetBool(pickupHash, true);
+            }
+            if (action != null) {
+                action.Execute(this.gameObject, item);
+            }
+            else if (item.isCarryable) {
+                // Pick up
                 item.gameObject.transform.SetParent(transform);
                 carriedObject = item.gameObject;
                 animator.SetBool(pickupHash, false);
             }
-            else if (item) {
-                Action action = null;
-                switch (item.itemType) {
-                    case ItemType.Foodbowl:
-                        action = new FoodbowPlayerAction();
-                        break;
-                    case ItemType.Furniture:
-                        break;
-
-
-                    animator.SetBool(pickupHash, true);
-                }
-                if (action != null) {
-                    action.Execute(this.gameObject, item);
-                }
-            }
         }
+        if (!item && carriedObject != null) {
+            // Drop
+            carriedObject.transform.SetParent(null);
+            carriedObject = null;
+        }
+    }
+
+    public Item GetCarriedItem() {
+        if (carriedObject) {
+            return carriedObject.GetComponent<Item>();
+        }
+        return null;
+    }
+
+    public void ResetFood() {
+        Item food = GetCarriedItem();
+        food.transform.parent = null;
+        // TODO find fridge location
+        food.transform.position = new Vector3(3.97f, 0.78f, -9.14f);
+        carriedObject = null;
     }
 }

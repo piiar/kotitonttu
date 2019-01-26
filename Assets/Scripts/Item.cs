@@ -7,7 +7,9 @@ public enum ItemType {
     CatTree = 1,
     CardboardBox = 2,
     Foodbowl = 3,
-    Litterbox = 4
+    Food = 4,
+    Litterbox = 5
+
 }
 
 public class Item : MonoBehaviour {
