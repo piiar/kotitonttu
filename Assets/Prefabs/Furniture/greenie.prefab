@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1621797889}
   m_Layer: 0
   m_Name: greenie
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
+  isPickedUp: 0
   isGoal: 1
   isCarryable: 1
   isFixable: 0
@@ -114,6 +115,5 @@ MonoBehaviour:
   currentValue: 15
   damageFactor: 0
   fixFactor: 0
-  timeToResetDamageCountdown: 1
   timeToDamage: 0
   countdownToDamage: 0
