@@ -23,28 +23,24 @@ public class Item : MonoBehaviour {
     public double timeToDamage;
     public double countdownToDamage;
 
-    public void updateCountdownToDamage()
-    {
+    public void updateCountdownToDamage() {
         double deltaTime = Time.deltaTime;
 
         // pet has been away too long from the item, reset damage countdown
-        if(deltaTime >= timeToResetDamageCountdown)
-        {
+        if (deltaTime >= timeToResetDamageCountdown) {
             Debug.Log("Damage prevented");
             countdownToDamage = timeToDamage;
         }
 
         countdownToDamage -= deltaTime;
-        Debug.Log("Countdown to damage "+ countdownToDamage);
-        if (countdownToDamage < 0f)
-        {
+        Debug.Log("Countdown to damage " + countdownToDamage);
+        if (countdownToDamage < 0f) {
             HandleDamage();
             countdownToDamage = timeToDamage;
         }
     }
 
-
-    private void HandleDamage() {
+    public void HandleDamage() {
         if (currentValue > 0) {
             currentValue -= damageFactor;
             Debug.Log("Item damaged, value left: " + currentValue + "/" + maxValue);
@@ -55,7 +51,7 @@ public class Item : MonoBehaviour {
         }
     }
 
-    private void HandleFixing() {
+    public void HandleFixing() {
         if (currentValue < maxValue) {
             currentValue += fixFactor;
             Debug.Log("Item fixed, value left: " + currentValue + "/" + maxValue);
