@@ -7,6 +7,8 @@ public interface Action {
 
 public delegate void ItemAction(GameObject actor, Item item);
 
+public delegate void PlayerAction(Player player, Item item);
+
 public class ActionInstance : Action {
     private readonly ItemAction action;
 
@@ -16,5 +18,11 @@ public class ActionInstance : Action {
 
     public void Execute(GameObject actor, Item target) {
         action(actor, target);
+    }
+}
+
+public static class ActionEx {
+    public static PlayerAction AsPlayerAction(this Action action) {
+        return (p, i) => action.Execute(p.gameObject, i);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -58,27 +59,28 @@ public class Player : MonoBehaviour {
     private void HandleInteraction() {
         Item item = itemFinder.LastItem;
         if (item) {
-            Action action = null;
+            PlayerAction action = null;
             switch (item.itemType) {
                 case ItemType.Foodbowl:
-                    action = new FoodbowlPlayerAction();
+                    action = new FoodbowlPlayerAction().AsPlayerAction();
                     break;
                 case ItemType.Dishtable:
-                    action = new DishtableAction();
+                    action = new DishtableAction().AsPlayerAction();
                     break;
                 case ItemType.Fridge:
-                    action = new FridgeAction();
+                    action = new FridgeAction().AsPlayerAction();
                     break;
                 case ItemType.Drawer:
                     var drawer = item.GetComponent<DrawerScript>();
-                    action = new ActionInstance(drawer.ItemAction);
+                    action = drawer.PlayerAction;
                     break;
                 case ItemType.Furniture:
+                    action = item.PlayerRepairAction;
                     break;
             }
 
             if (action != null) {
-                action.Execute(this.gameObject, item);
+                action(this, item);
             }
             else if (!carriedObject && item.isCarryable) {
                 // Pick up
@@ -95,6 +97,10 @@ public class Player : MonoBehaviour {
                 carriedObject = null;
             }));
         }
+    }
+
+    public bool HasRepairItem() {
+        return carriedObject && GetCarriedItem().itemType == ItemType.RepairItem;
     }
 
     IEnumerator togglePickupAnimation(System.Action callback) {

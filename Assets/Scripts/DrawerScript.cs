@@ -8,12 +8,12 @@ public class DrawerScript : MonoBehaviour {
         
     }
 
-    internal void ItemAction(GameObject actor, Item item) {
+    internal void PlayerAction(Player player, Item item) {
         var repairGameObject = GameObject.Instantiate(RepairItem);
-        repairGameObject.transform.position = actor.transform.position;
+        repairGameObject.transform.position = player
+                .gameObject.transform.position;
         var repairItem = repairGameObject.GetComponent<Item>();
 
-        var player = actor.GetComponent<Player>();
         player.SetCarriedItem(repairItem);
     }
 }

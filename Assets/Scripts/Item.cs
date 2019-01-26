@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -76,5 +77,21 @@ public class Item : MonoBehaviour {
 
     public void DroppedDown() {
         isPickedUp = false;
+    }
+
+    internal void PlayerRepairAction(Player player, Item item) {
+        if (currentValue == maxValue) {
+            return;
+        }
+        if (fixFactor == 0) {
+            return;
+        }
+        if (!player.HasRepairItem()) {
+            return;
+        }
+
+        HandleFixing();
+        GameObject.Destroy(player.GetCarriedItem());
+        player.SetCarriedItem(null);
     }
 }
