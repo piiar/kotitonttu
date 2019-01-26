@@ -50,7 +50,7 @@ public class Creature : MonoBehaviour {
     }
 
     private void RandomizeGoal() {
-        Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal).ToArray();
+        Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal && item.currentValue > 0).ToArray();
         do {
             int index = Random.Range(0, items.Length);
             goal = items[index].gameObject.transform;
