@@ -55,7 +55,6 @@ public class Creature : MonoBehaviour {
 
     private void RandomizeGoal() {
         Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal && item.currentValue > 0).ToArray();
-		Item foundItem;
         if (items.Length > 1)
         {
             do
@@ -72,9 +71,10 @@ public class Creature : MonoBehaviour {
         if (goal) {
             agent.SetDestination(goal.position);
             Debug.Log("Next goal: " + goal.gameObject.name);
-        }
 
-        UIManager.instance.OpenThinkBubble(transform, foundItem.itemType);
+            Item foundItem = goal.GetComponent<Item>();
+            UIManager.instance.OpenThinkBubble(transform, foundItem.itemType);
+        }
     }
 
     private void DoAction(GameObject goalObject) {
