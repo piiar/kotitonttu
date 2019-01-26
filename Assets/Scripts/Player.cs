@@ -75,7 +75,9 @@ public class Player : MonoBehaviour {
                     action = drawer.PlayerAction;
                     break;
                 case ItemType.Furniture:
-                    action = item.PlayerRepairAction;
+                    if (HasRepairItem()) {
+                        action = item.PlayerRepairAction;
+                    }
                     break;
             }
 
