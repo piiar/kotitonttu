@@ -19,21 +19,48 @@ public class Item : MonoBehaviour {
     public int currentValue;
     public int damageFactor;
     public int fixFactor;
+    public double timeToResetDamageCountdown = 1f;
+    public double timeToDamage;
+    public double countdownToDamage;
+
+    public void updateCountdownToDamage()
+    {
+        double deltaTime = Time.deltaTime;
+
+        // pet has been away too long from the item, reset damage countdown
+        if(deltaTime >= timeToResetDamageCountdown)
+        {
+            Debug.Log("Damage prevented");
+            countdownToDamage = timeToDamage;
+        }
+
+        countdownToDamage -= deltaTime;
+        Debug.Log("Countdown to damage "+ countdownToDamage);
+        if (countdownToDamage < 0f)
+        {
+            HandleDamage();
+            countdownToDamage = timeToDamage;
+        }
+    }
+
 
     private void HandleDamage() {
-        if (this.currentValue > 0) {
-            this.currentValue -= this.damageFactor;
-            if (this.currentValue < 0) {
-                this.currentValue = 0;
+        if (currentValue > 0) {
+            currentValue -= damageFactor;
+            Debug.Log("Item damaged, value left: " + currentValue + "/" + maxValue);
+            if (currentValue < 0) {
+                Debug.Log("Item destroyed");
+                currentValue = 0;
             }
         }
     }
 
     private void HandleFixing() {
-        if (this.currentValue < this.maxValue) {
-            this.currentValue += this.fixFactor;
-            if (this.currentValue > this.maxValue) {
-                this.currentValue = this.maxValue;
+        if (currentValue < maxValue) {
+            currentValue += fixFactor;
+            Debug.Log("Item fixed, value left: " + currentValue + "/" + maxValue);
+            if (currentValue > maxValue) {
+                currentValue = maxValue;
             }
         }
     }
