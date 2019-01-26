@@ -21,8 +21,8 @@ public class ProgressIndicator : MonoBehaviour {
         {
             this.gameObject.SetActive(true);
         }
-        
-        rect.localScale = new Vector3(percent, 1, 1);
+
+        healthRect.localScale = new Vector3(percent, 1, 1);
     }
 
     public void UpdateBarPos(Vector3 position)
