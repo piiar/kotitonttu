@@ -6,7 +6,8 @@ public enum ItemType {
     Furniture = 0,
     CatTree = 1,
     CardboardBox = 2,
-    RubberDuck = 3
+    Foodbowl = 3,
+    Litterbox = 4
 }
 
 public class Item : MonoBehaviour {
@@ -19,25 +20,19 @@ public class Item : MonoBehaviour {
     public int damageFactor;
     public int fixFactor;
 
-    private void HandleDamage()
-    {
-        if(this.currentValue > 0)
-        {
+    private void HandleDamage() {
+        if (this.currentValue > 0) {
             this.currentValue -= this.damageFactor;
-            if (this.currentValue < 0)
-            {
+            if (this.currentValue < 0) {
                 this.currentValue = 0;
             }
         }
     }
 
-    private void HandleFixing()
-    {
-        if (this.currentValue < this.maxValue)
-        {
+    private void HandleFixing() {
+        if (this.currentValue < this.maxValue) {
             this.currentValue += this.fixFactor;
-            if (this.currentValue > this.maxValue)
-            {
+            if (this.currentValue > this.maxValue) {
                 this.currentValue = this.maxValue;
             }
         }
