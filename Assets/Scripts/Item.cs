@@ -9,7 +9,8 @@ public enum ItemType {
     Foodbowl = 3,
     Food = 4,
     Litterbox = 5,
-    Dishtable = 6
+    Dishtable = 6,
+    Fridge = 7
 }
 
 public class Item : MonoBehaviour {
@@ -27,8 +28,7 @@ public class Item : MonoBehaviour {
     public double countdownToDamage = 3f;
 
     public void UpdateCountdownToDamage() {
-        if(isPickedUp)
-        {
+        if (isPickedUp) {
             return;
         }
 
@@ -41,8 +41,7 @@ public class Item : MonoBehaviour {
         }
     }
 
-    public void PreventDamage()
-    {
+    public void PreventDamage() {
         Debug.Log("Damage prevented!");
         countdownToDamage = timeToDamage;
     }
@@ -68,14 +67,12 @@ public class Item : MonoBehaviour {
         }
     }
 
-    public void PickedUp()
-    {
+    public void PickedUp() {
         PreventDamage();
         isPickedUp = true;
     }
 
-    public void DroppedDown()
-    {
+    public void DroppedDown() {
         isPickedUp = false;
     }
 }

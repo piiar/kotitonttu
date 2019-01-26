@@ -10,9 +10,11 @@ public class FoodbowlPlayerAction : Action {
             Item carriedItem = player.GetCarriedItem();
             if (carriedItem && carriedItem.itemType == ItemType.Food) {
                 target.HandleFixing();
-                player.ResetFood();
+                carriedItem.gameObject.transform.parent = null;
+                // TODO find fridge location
+                carriedItem.gameObject.transform.position = new Vector3(3.97f, 0.78f, -9.14f);
+                player.SetCarriedItem(null);
             }
         }
-
     }
 }

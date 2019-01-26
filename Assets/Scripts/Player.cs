@@ -66,6 +66,9 @@ public class Player : MonoBehaviour {
                 case ItemType.Dishtable:
                     action = new DishtableAction();
                     break;
+                case ItemType.Fridge:
+                    action = new FridgeAction();
+                    break;
                 case ItemType.Furniture:
                     break;
             }
@@ -75,12 +78,8 @@ public class Player : MonoBehaviour {
             }
             else if (item.isCarryable) {
                 // Pick up
-                StartCoroutine(togglePickupAnimation(() => {
-                    animator.SetLayerWeight(1, 1f);
-                    item.gameObject.transform.SetParent(transform);
-                    carriedObject = item.gameObject;
-                    carriedObject.GetComponent<Item>().PickedUp();
-                }));
+                PickupItem(item);
+
             }
         }
         if (!item && carriedObject != null) {
@@ -100,6 +99,15 @@ public class Player : MonoBehaviour {
         callback();
     }
 
+    private void PickupItem(Item item) {
+        StartCoroutine(togglePickupAnimation(() => {
+            animator.SetLayerWeight(1, 1f);
+            item.gameObject.transform.SetParent(transform);
+            carriedObject = item.gameObject;
+            item.PickedUp();
+        }));
+    }
+
     public Item GetCarriedItem() {
         if (carriedObject) {
             return carriedObject.GetComponent<Item>();
@@ -107,11 +115,12 @@ public class Player : MonoBehaviour {
         return null;
     }
 
-    public void ResetFood() {
-        Item food = GetCarriedItem();
-        food.transform.parent = null;
-        // TODO find fridge location
-        food.transform.position = new Vector3(3.97f, 0.78f, -9.14f);
-        carriedObject = null;
+    public void SetCarriedItem(Item item) {
+        if (!item) {
+            carriedObject = null;
+        }
+        else if (!carriedObject) {
+            PickupItem(item);
+        }
     }
 }
