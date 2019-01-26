@@ -5,7 +5,7 @@ public class FoodbowlPlayerAction : Action {
 
     public void Execute(GameObject actor, Item target) {
         Debug.Log("Player fills foodbowl");
-        if (target.itemType == ItemType.Foodbowl && target.currentValue == 0) {
+        if (target.itemType == ItemType.Foodbowl && target.currentValue < target.maxValue) {
             Player player = actor.GetComponent<Player>();
             Item carriedItem = player.GetCarriedItem();
             if (carriedItem && carriedItem.itemType == ItemType.Food) {
