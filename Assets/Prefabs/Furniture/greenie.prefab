@@ -114,3 +114,6 @@ MonoBehaviour:
   currentValue: 15
   damageFactor: 0
   fixFactor: 0
+  timeToResetDamageCountdown: 1
+  timeToDamage: 0
+  countdownToDamage: 0
