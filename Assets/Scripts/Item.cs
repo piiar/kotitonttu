@@ -14,6 +14,7 @@ public enum ItemType {
 
 public class Item : MonoBehaviour {
     public ItemType itemType;
+    public bool isPickedUp = false;
     public bool isGoal;
     public bool isCarryable;
     public bool isFixable;
@@ -21,29 +22,28 @@ public class Item : MonoBehaviour {
     public int currentValue;
     public int damageFactor = 1;
     public int fixFactor = 1;
-    public double timeToResetDamageCountdown = 1f;
     public double timeToDamage = 3f;
     public double countdownToDamage = 3f;
-    private double elapsedDamagePreventTime = 0;
 
-    public void updateCountdownToDamage() {
-        //elapsedDamagePreventTime += Time.deltaTime;
-        double deltaTime = Time.deltaTime;
-
-        // pet has been away too long from the item, reset damage countdown
-        if (elapsedDamagePreventTime >= timeToResetDamageCountdown) {
-            Debug.Log("Damage prevented");
-            countdownToDamage = timeToDamage;
-            elapsedDamagePreventTime = 0;
+    public void UpdateCountdownToDamage() {
+        if(isPickedUp)
+        {
+            return;
         }
 
+        double deltaTime = Time.deltaTime;
+
         countdownToDamage -= deltaTime;
-        Debug.Log("Countdown to damage " + countdownToDamage);
         if (countdownToDamage < 0f) {
             HandleDamage();
             countdownToDamage = timeToDamage;
-            elapsedDamagePreventTime = 0;
         }
+    }
+
+    public void PreventDamage()
+    {
+        Debug.Log("Damage prevented!");
+        countdownToDamage = timeToDamage;
     }
 
     public void HandleDamage() {
@@ -65,5 +65,16 @@ public class Item : MonoBehaviour {
                 currentValue = maxValue;
             }
         }
+    }
+
+    public void PickedUp()
+    {
+        PreventDamage();
+        isPickedUp = true;
+    }
+
+    public void DroppedDown()
+    {
+        isPickedUp = false;
     }
 }

@@ -86,12 +86,14 @@ public class Player : MonoBehaviour {
                 // Pick up
                 item.gameObject.transform.SetParent(transform);
                 carriedObject = item.gameObject;
+                carriedObject.GetComponent<Item>().PickedUp();
                 animator.SetBool(pickupHash, false);
             }
         }
         if (!item && carriedObject != null) {
             // Drop
             carriedObject.transform.SetParent(null);
+            carriedObject.GetComponent<Item>().DroppedDown();
             carriedObject = null;
         }
     }
