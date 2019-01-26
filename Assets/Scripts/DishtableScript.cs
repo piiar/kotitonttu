@@ -7,16 +7,19 @@ using UnityEngine;
 public class DishtableScript : MonoBehaviour {
     public GameObject WaterObject;
 
+    // Y coords for water object
     public float WaterLevelLow;
     public float WaterLevelHigh;
 
+    // T = [0,1]
+    // Value should go from 0 to 1, and back to 0
     public AnimationCurve WaterLevelCurve;
 
-    public bool WantAnimate;
-
+    // Use these for development
     public WaterOverride Override;
     [Range(0f, 1f)]
     public float OverrideAnimationState;
+    public bool WantAnimate;
 
     // From 0 to 1
     private float animationState;
@@ -44,19 +47,24 @@ public class DishtableScript : MonoBehaviour {
         }
 
         if (animating) {
-            updateLevelForFrame();
+            updateAnimationState();
 
             setWaterLevel(animationState);
         }
     }
 
-    private float updateLevelForFrame() {
+    private float updateAnimationState() {
         if (Override == WaterOverride.Time) {
             return OverrideAnimationState;
         }
 
         animationState += Time.deltaTime;
-        animationState = Mathf.Clamp01(animationState);
+
+        if (animationState > 1) {
+            animationState = 0;
+            animating = false;
+        }
+
         return animationState;
     }
 
