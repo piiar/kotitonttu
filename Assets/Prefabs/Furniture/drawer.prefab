@@ -106,12 +106,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   isPickedUp: 0
-  isGoal: 1
-  isCarryable: 1
+  isGoal: 0
+  isCarryable: 0
   isFixable: 0
+  isUsable: 1
   maxValue: 12
   currentValue: 12
-  damageFactor: 0
-  fixFactor: 0
-  timeToDamage: 0
-  countdownToDamage: 0
+  damageFactor: 1
+  fixFactor: 1
+  timeToDamage: 2
+  countdownToDamage: 2

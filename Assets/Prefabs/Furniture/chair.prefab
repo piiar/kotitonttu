@@ -108,10 +108,11 @@ MonoBehaviour:
   isPickedUp: 0
   isGoal: 1
   isCarryable: 1
-  isFixable: 0
+  isFixable: 1
+  isUsable: 0
   maxValue: 5
   currentValue: 5
-  damageFactor: 0
-  fixFactor: 0
-  timeToDamage: 0
-  countdownToDamage: 0
+  damageFactor: 1
+  fixFactor: 1
+  timeToDamage: 4
+  countdownToDamage: 4
