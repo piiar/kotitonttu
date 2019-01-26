@@ -84,7 +84,7 @@ public class Item : MonoBehaviour {
     }
 
     internal void PlayerRepairAction(Player player, Item item) {
-        if (currentValue == maxValue) {
+        if (currentValue == 0 || currentValue == maxValue) {
             return;
         }
         if (fixFactor == 0) {
