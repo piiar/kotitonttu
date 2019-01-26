@@ -30,6 +30,10 @@ public class Player : MonoBehaviour {
         if (interaction) {
             HandleInteraction();
         }
+
+        // Prevent the player for spinning due to physics issues when moving stuff and colliding
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
     }
 
     private void ApplyRotationTo(Vector3 targetPosition) {
