@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4425826, g: 0.4916845, b: 0.5715079, a: 1}
+  m_IndirectSpecularColor: {r: 0.44258198, g: 0.49168354, b: 0.57150656, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1689,6 +1689,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 797851877, guid: 67985b0f3b3346e48add67dca39ccba0, type: 3}
+      propertyPath: fixFactor
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67985b0f3b3346e48add67dca39ccba0, type: 3}
 --- !u!1001 &1397876236582618859
@@ -2035,6 +2039,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 89312946, guid: 9b902fe1eae128d4e8665e32659bb9fe, type: 3}
+      propertyPath: maxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 89312946, guid: 9b902fe1eae128d4e8665e32659bb9fe, type: 3}
+      propertyPath: currentValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 89312946, guid: 9b902fe1eae128d4e8665e32659bb9fe, type: 3}
+      propertyPath: damageFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 89312946, guid: 9b902fe1eae128d4e8665e32659bb9fe, type: 3}
+      propertyPath: fixFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 89312946, guid: 9b902fe1eae128d4e8665e32659bb9fe, type: 3}
+      propertyPath: timeToDamage
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 89312946, guid: 9b902fe1eae128d4e8665e32659bb9fe, type: 3}
+      propertyPath: countdownToDamage
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b902fe1eae128d4e8665e32659bb9fe, type: 3}
 --- !u!1001 &4595740562985317902
@@ -2165,11 +2193,6 @@ PrefabInstance:
       propertyPath: panel
       value: 
       objectReference: {fileID: 1494755092}
-    - target: {fileID: 4810378439163316567, guid: 26335485e9960e74ba79b9bc07d5b976,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 590847990710192334, guid: 26335485e9960e74ba79b9bc07d5b976,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2213,6 +2236,11 @@ PrefabInstance:
     - target: {fileID: 590847990710192334, guid: 26335485e9960e74ba79b9bc07d5b976,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810378439163316567, guid: 26335485e9960e74ba79b9bc07d5b976,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5056375326040279331, guid: 26335485e9960e74ba79b9bc07d5b976,
@@ -2287,6 +2315,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621797889, guid: c980005f04de2bc448ca3096f3045220, type: 3}
+      propertyPath: maxValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621797889, guid: c980005f04de2bc448ca3096f3045220, type: 3}
+      propertyPath: currentValue
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621797889, guid: c980005f04de2bc448ca3096f3045220, type: 3}
+      propertyPath: damageFactor
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c980005f04de2bc448ca3096f3045220, type: 3}
@@ -2429,6 +2469,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 43806370, guid: f6552b7bed15153418803d57ea62187a, type: 3}
+      propertyPath: maxValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 43806370, guid: f6552b7bed15153418803d57ea62187a, type: 3}
+      propertyPath: currentValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 43806370, guid: f6552b7bed15153418803d57ea62187a, type: 3}
+      propertyPath: damageFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 43806370, guid: f6552b7bed15153418803d57ea62187a, type: 3}
+      propertyPath: timeToDamage
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 43806370, guid: f6552b7bed15153418803d57ea62187a, type: 3}
+      propertyPath: countdownToDamage
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6552b7bed15153418803d57ea62187a, type: 3}
 --- !u!1001 &8025480439486500767
@@ -2500,6 +2560,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001862340, guid: 081ddc18bfc370e4b9600a5d9f1975ce, type: 3}
+      propertyPath: timeToDamage
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001862340, guid: 081ddc18bfc370e4b9600a5d9f1975ce, type: 3}
+      propertyPath: countdownToDamage
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 081ddc18bfc370e4b9600a5d9f1975ce, type: 3}
