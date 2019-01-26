@@ -54,16 +54,25 @@ public class Creature : MonoBehaviour {
     }
 
     private void RandomizeGoal() {
-        Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal).ToArray();
-        Item foundItem;
-        do {
-            int index = Random.Range(0, items.Length);
-            foundItem = items[index];
-            goal = foundItem.gameObject.transform;
-        } while (goal == previousGoal);
-        previousGoal = goal;
-        agent.SetDestination(goal.position);
-        Debug.Log("Next goal: " + goal.gameObject.name);
+        Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal && item.currentValue > 0).ToArray();
+		Item foundItem;
+        if (items.Length > 1)
+        {
+            do
+            {
+                int index = Random.Range(0, items.Length);
+                goal = items[index].gameObject.transform;
+            } while (goal == previousGoal);
+        }
+        else if(items.Length == 0)
+        {
+            goal = null;
+        }
+        
+        if (goal) {
+            agent.SetDestination(goal.position);
+            Debug.Log("Next goal: " + goal.gameObject.name);
+        }
 
         UIManager.instance.OpenThinkBubble(transform, foundItem.itemType);
     }

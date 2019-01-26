@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6302197965715103540}
   m_Layer: 0
   m_Name: Food
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,13 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 4
+  isPickedUp: 0
   isGoal: 0
   isCarryable: 1
   isFixable: 0
   maxValue: 0
   currentValue: 0
-  damageFactor: 0
-  fixFactor: 0
-  timeToResetDamageCountdown: 1
-  timeToDamage: 0
-  countdownToDamage: 0

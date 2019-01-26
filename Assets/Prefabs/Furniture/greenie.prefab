@@ -111,9 +111,10 @@ MonoBehaviour:
   isGoal: 1
   isCarryable: 1
   isFixable: 0
+  isUsable: 0
   maxValue: 15
   currentValue: 15
-  damageFactor: 0
+  damageFactor: 5
   fixFactor: 0
-  timeToDamage: 0
-  countdownToDamage: 0
+  timeToDamage: 4.5
+  countdownToDamage: 4.5

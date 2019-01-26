@@ -104,14 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2315e827ef374113b10574538717163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 7
   isPickedUp: 0
-  isGoal: 1
+  isGoal: 0
   isCarryable: 0
   isFixable: 0
+  isUsable: 1
   maxValue: 20
   currentValue: 20
-  damageFactor: 0
-  fixFactor: 0
-  timeToDamage: 0
-  countdownToDamage: 0

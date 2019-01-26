@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,10 @@ public enum ItemType {
     Foodbowl = 3,
     Food = 4,
     Litterbox = 5,
-    Dishtable = 6
+    Dishtable = 6,
+    Fridge = 7,
+    Drawer = 8,
+    RepairItem = 9
 }
 
 public class Item : MonoBehaviour {
@@ -21,14 +25,13 @@ public class Item : MonoBehaviour {
     public bool isUsable;
     public int maxValue;
     public int currentValue;
-    private int damageFactor = 1;
-    private int fixFactor = 1;
-    private double timeToDamage = 3f;
-    private double countdownToDamage = 3f;
+    public int damageFactor = 1;
+    public int fixFactor = 1;
+    public double timeToDamage = 3f;
+    public double countdownToDamage = 3f;
 
     public void UpdateCountdownToDamage() {
-        if(isPickedUp)
-        {
+        if (isPickedUp) {
             return;
         }
 
@@ -41,8 +44,7 @@ public class Item : MonoBehaviour {
         }
     }
 
-    public void PreventDamage()
-    {
+    public void PreventDamage() {
         Debug.Log("Damage prevented!");
         countdownToDamage = timeToDamage;
     }
@@ -68,14 +70,28 @@ public class Item : MonoBehaviour {
         }
     }
 
-    public void PickedUp()
-    {
+    public void PickedUp() {
         PreventDamage();
         isPickedUp = true;
     }
 
-    public void DroppedDown()
-    {
+    public void DroppedDown() {
         isPickedUp = false;
+    }
+
+    internal void PlayerRepairAction(Player player, Item item) {
+        if (currentValue == maxValue) {
+            return;
+        }
+        if (fixFactor == 0) {
+            return;
+        }
+        if (!player.HasRepairItem()) {
+            return;
+        }
+
+        HandleFixing();
+        GameObject.Destroy(player.GetCarriedItem());
+        player.SetCarriedItem(null);
     }
 }

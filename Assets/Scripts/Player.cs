@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -58,29 +59,33 @@ public class Player : MonoBehaviour {
     private void HandleInteraction() {
         Item item = itemFinder.LastItem;
         if (item) {
-            Action action = null;
+            PlayerAction action = null;
             switch (item.itemType) {
                 case ItemType.Foodbowl:
-                    action = new FoodbowlPlayerAction();
+                    action = new FoodbowlPlayerAction().AsPlayerAction();
                     break;
                 case ItemType.Dishtable:
-                    action = new DishtableAction();
+                    action = new DishtableAction().AsPlayerAction();
+                    break;
+                case ItemType.Fridge:
+                    action = new FridgeAction().AsPlayerAction();
+                    break;
+                case ItemType.Drawer:
+                    var drawer = item.GetComponent<DrawerScript>();
+                    action = drawer.PlayerAction;
                     break;
                 case ItemType.Furniture:
+                    action = item.PlayerRepairAction;
                     break;
             }
 
             if (action != null) {
-                action.Execute(this.gameObject, item);
+                action(this, item);
             }
-            else if (item.isCarryable) {
+            else if (!carriedObject && item.isCarryable) {
                 // Pick up
-                StartCoroutine(togglePickupAnimation(() => {
-                    animator.SetLayerWeight(1, 1f);
-                    item.gameObject.transform.SetParent(transform);
-                    carriedObject = item.gameObject;
-                    carriedObject.GetComponent<Item>().PickedUp();
-                }));
+                PickupItem(item);
+
             }
         }
         if (!item && carriedObject != null) {
@@ -94,10 +99,23 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public bool HasRepairItem() {
+        return carriedObject && GetCarriedItem().itemType == ItemType.RepairItem;
+    }
+
     IEnumerator togglePickupAnimation(System.Action callback) {
         animator.SetTrigger(pickupHash);
         yield return new WaitForSeconds(0.5f);
         callback();
+    }
+
+    private void PickupItem(Item item) {
+        StartCoroutine(togglePickupAnimation(() => {
+            animator.SetLayerWeight(1, 1f);
+            item.gameObject.transform.SetParent(transform);
+            carriedObject = item.gameObject;
+            item.PickedUp();
+        }));
     }
 
     public Item GetCarriedItem() {
@@ -107,11 +125,12 @@ public class Player : MonoBehaviour {
         return null;
     }
 
-    public void ResetFood() {
-        Item food = GetCarriedItem();
-        food.transform.parent = null;
-        // TODO find fridge location
-        food.transform.position = new Vector3(3.97f, 0.78f, -9.14f);
-        carriedObject = null;
+    public void SetCarriedItem(Item item) {
+        if (!item) {
+            carriedObject = null;
+        }
+        else if (!carriedObject) {
+            PickupItem(item);
+        }
     }
 }
