@@ -7,7 +7,9 @@ public enum ItemType {
     CatTree = 1,
     CardboardBox = 2,
     Foodbowl = 3,
-    Litterbox = 4
+    Food = 4,
+    Litterbox = 5
+
 }
 
 public class Item : MonoBehaviour {
@@ -17,19 +19,22 @@ public class Item : MonoBehaviour {
     public bool isFixable;
     public int maxValue;
     public int currentValue;
-    public int damageFactor;
-    public int fixFactor;
+    public int damageFactor = 1;
+    public int fixFactor = 1;
     public double timeToResetDamageCountdown = 1f;
-    public double timeToDamage;
-    public double countdownToDamage;
+    public double timeToDamage = 3f;
+    public double countdownToDamage = 3f;
+    private double elapsedDamagePreventTime = 0;
 
     public void updateCountdownToDamage() {
+        //elapsedDamagePreventTime += Time.deltaTime;
         double deltaTime = Time.deltaTime;
 
         // pet has been away too long from the item, reset damage countdown
-        if (deltaTime >= timeToResetDamageCountdown) {
+        if (elapsedDamagePreventTime >= timeToResetDamageCountdown) {
             Debug.Log("Damage prevented");
             countdownToDamage = timeToDamage;
+            elapsedDamagePreventTime = 0;
         }
 
         countdownToDamage -= deltaTime;
@@ -37,6 +42,7 @@ public class Item : MonoBehaviour {
         if (countdownToDamage < 0f) {
             HandleDamage();
             countdownToDamage = timeToDamage;
+            elapsedDamagePreventTime = 0;
         }
     }
 

@@ -5,5 +5,8 @@ public class FurnitureCatAction : Action {
 
     public void Execute(GameObject actor, Item target) {
         Debug.Log("Cat scratches furniture!");
+        if(target.itemType == ItemType.Furniture) {
+            target.updateCountdownToDamage();
+        }
     }
 }
