@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4425826, g: 0.4916845, b: 0.5715079, a: 1}
+  m_IndirectSpecularColor: {r: 0.44258207, g: 0.49168366, b: 0.57150674, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -112,6 +112,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: f0103b19d7cd1744b8279240fa32f4cf, type: 2}
+--- !u!1001 &32524507
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8223432604467008107, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_Name
+      value: Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618894049111617165, guid: ad85e9dc3992f438082475d99f3bf179,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad85e9dc3992f438082475d99f3bf179, type: 3}
 --- !u!1 &88450327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,6 +1669,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1243846699, guid: cbd1015d169f6574e9a59d76406f9594, type: 3}
+      propertyPath: isGoal
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbd1015d169f6574e9a59d76406f9594, type: 3}
 --- !u!1001 &3067586766108884181
@@ -1817,6 +1890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sofa
       objectReference: {fileID: 0}
+    - target: {fileID: 43806365, guid: f6552b7bed15153418803d57ea62187a, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     - target: {fileID: 6485358397597564268, guid: f6552b7bed15153418803d57ea62187a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1884,6 +1961,10 @@ PrefabInstance:
     - target: {fileID: 1001862335, guid: 081ddc18bfc370e4b9600a5d9f1975ce, type: 3}
       propertyPath: m_Name
       value: table
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001862335, guid: 081ddc18bfc370e4b9600a5d9f1975ce, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 235603068285104428, guid: 081ddc18bfc370e4b9600a5d9f1975ce,
         type: 3}

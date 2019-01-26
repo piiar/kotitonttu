@@ -8,7 +8,7 @@ public class FoodbowlPlayerAction : Action {
         if (target.itemType == ItemType.Foodbowl && target.currentValue == 0) {
             Player player = actor.GetComponent<Player>();
             Item carriedItem = player.GetCarriedItem();
-            if (carriedItem.itemType == ItemType.Food) {
+            if (carriedItem && carriedItem.itemType == ItemType.Food) {
                 target.HandleFixing();
                 player.ResetFood();
             }
