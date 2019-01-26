@@ -5,12 +5,17 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Creature : MonoBehaviour {
+
+    private readonly int speedHash = Animator.StringToHash("Speed");
+
     public Transform goal;
     private Transform previousGoal;
     private NavMeshAgent agent;
+    private Animator animator;
     private float timeUntilGoalChange = 10f;
 
     void Awake() {
+        animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         RandomizeGoal();
         agent.SetDestination(goal.position);
@@ -32,6 +37,8 @@ public class Creature : MonoBehaviour {
             goal = null;
             timeUntilGoalChange = 5f;
         }
+
+        animator.SetFloat(speedHash, Mathf.Min(agent.velocity.magnitude, 1f));
     }
 
     private void RandomizeGoal() {

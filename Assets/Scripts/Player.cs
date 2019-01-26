@@ -4,6 +4,10 @@ using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+
+    private readonly int speedHash = Animator.StringToHash("Speed");
+    private readonly int pickupHash = Animator.StringToHash("PickUp");
+
     Vector3 movement;
 
     float rotationSpeed = 12f;
@@ -12,10 +16,12 @@ public class Player : MonoBehaviour {
     GameObject carriedObject = null;
 
     private new Rigidbody rigidbody;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Awake() {
         rigidbody = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -28,6 +34,8 @@ public class Player : MonoBehaviour {
         rigidbody.MovePosition(transform.position + movement);
 
         HandleInteraction(interaction);
+
+        animator.SetFloat(speedHash, Mathf.Min(moveDirection.magnitude, 1f));
     }
 
     private void ApplyRotationTo(Vector3 targetPosition) {
@@ -57,6 +65,7 @@ public class Player : MonoBehaviour {
                 // Drop
                 carriedObject.transform.SetParent(null);
                 carriedObject = null;
+                animator.SetBool(pickupHash, false);
             }
             else {
                 // Pick up
@@ -64,6 +73,8 @@ public class Player : MonoBehaviour {
                 if (obj) {
                     obj.transform.SetParent(transform);
                     carriedObject = obj;
+
+                    animator.SetBool(pickupHash, true);
                 }
             }
         }
