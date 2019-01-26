@@ -28,6 +28,8 @@ public class Creature : MonoBehaviour {
         if (goal && goal.parent == null) { // target is not being carried
             goalTarget = null;
             agent.SetDestination(goal.position);
+
+            UIManager.instance.UpdateThinkBubble(transform);
         }
         if (timeUntilGoalChange <= 0f) {
             goalTarget = null;
@@ -40,6 +42,8 @@ public class Creature : MonoBehaviour {
             DoAction(goalTarget);
             goal = null;
             timeUntilGoalChange = 5f;
+
+            UIManager.instance.CloseThinkBubble(transform.name);
         }
         if(goalTarget)
         {
@@ -51,13 +55,17 @@ public class Creature : MonoBehaviour {
 
     private void RandomizeGoal() {
         Item[] items = FindObjectsOfType<Item>().Where(item => item.isGoal).ToArray();
+        Item foundItem;
         do {
             int index = Random.Range(0, items.Length);
-            goal = items[index].gameObject.transform;
+            foundItem = items[index];
+            goal = foundItem.gameObject.transform;
         } while (goal == previousGoal);
         previousGoal = goal;
         agent.SetDestination(goal.position);
         Debug.Log("Next goal: " + goal.gameObject.name);
+
+        UIManager.instance.OpenThinkBubble(transform, foundItem.itemType);
     }
 
     private void DoAction(GameObject goalObject) {
