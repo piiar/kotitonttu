@@ -9,6 +9,10 @@ public class DrawerScript : MonoBehaviour {
     }
 
     internal void PlayerAction(Player player, Item item) {
+        if (player.GetCarriedItem() != null) {
+            return;
+        }
+
         var repairGameObject = GameObject.Instantiate(RepairItem);
         repairGameObject.transform.position = player
                 .gameObject.transform.position;
