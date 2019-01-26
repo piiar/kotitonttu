@@ -65,30 +65,29 @@ public class Player : MonoBehaviour {
                     break;
                 case ItemType.Furniture:
                     break;
-           }
+            }
 
-           if (action != null) {
+            if (action != null) {
                 action.Execute(this.gameObject, item);
-           }
-           else if (item.isCarryable) {
+            }
+            else if (item.isCarryable) {
                 // Pick up
                 StartCoroutine(togglePickupAnimation(() => {
                     animator.SetLayerWeight(1, 1f);
                     item.gameObject.transform.SetParent(transform);
                     carriedObject = item.gameObject;
+                    carriedObject.GetComponent<Item>().PickedUp();
                 }));
-                carriedObject.GetComponent<Item>().PickedUp();
             }
         }
         if (!item && carriedObject != null) {
             // Drop
-            StartCoroutine(togglePickupAnimation(() =>
-            {
+            StartCoroutine(togglePickupAnimation(() => {
                 animator.SetLayerWeight(1, 0f);
                 carriedObject.transform.SetParent(null);
+                carriedObject.GetComponent<Item>().DroppedDown();
                 carriedObject = null;
             }));
-            carriedObject.GetComponent<Item>().DroppedDown();
         }
     }
 
