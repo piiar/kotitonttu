@@ -146,8 +146,11 @@ MonoBehaviour:
   itemType: 0
   isGoal: 1
   isCarryable: 1
+  isFixable: 0
   maxValue: 10
   currentValue: 10
+  damageFactor: 0
+  fixFactor: 0
 --- !u!1 &88450327
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,8 +236,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88450327}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -9.99, y: 2.11, z: -0.73}
-  m_LocalScale: {x: 19.921875, y: 5.522434, z: 0.39579797}
+  m_LocalPosition: {x: -10.412, y: 2.11, z: -0.581}
+  m_LocalScale: {x: 21.422392, y: 5.522434, z: 1.2404308}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 21
@@ -273,8 +276,11 @@ MonoBehaviour:
   itemType: 0
   isGoal: 1
   isCarryable: 1
+  isFixable: 0
   maxValue: 5
   currentValue: 5
+  damageFactor: 0
+  fixFactor: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,8 +769,11 @@ MonoBehaviour:
   itemType: 0
   isGoal: 1
   isCarryable: 1
+  isFixable: 0
   maxValue: 30
   currentValue: 30
+  damageFactor: 0
+  fixFactor: 0
 --- !u!1 &828591625
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,8 +859,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828591625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 2.11, z: -10.27}
-  m_LocalScale: {x: 21.25, y: 5.522434, z: 0.39579797}
+  m_LocalPosition: {x: 0.15, y: 2.11, z: -10.593}
+  m_LocalScale: {x: 21.25, y: 5.522434, z: 1.0417403}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 20
@@ -890,8 +899,11 @@ MonoBehaviour:
   itemType: 0
   isGoal: 1
   isCarryable: 1
+  isFixable: 0
   maxValue: 12
   currentValue: 12
+  damageFactor: 0
+  fixFactor: 0
 --- !u!1 &894655765 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: d4393fce1921b644a89c95a8323c0385,
@@ -1060,8 +1072,11 @@ MonoBehaviour:
   itemType: 0
   isGoal: 1
   isCarryable: 1
+  isFixable: 0
   maxValue: 15
   currentValue: 15
+  damageFactor: 0
+  fixFactor: 0
 --- !u!1001 &1218198059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1153,8 +1168,11 @@ MonoBehaviour:
   itemType: 0
   isGoal: 1
   isCarryable: 1
+  isFixable: 0
   maxValue: 20
   currentValue: 20
+  damageFactor: 0
+  fixFactor: 0
 --- !u!1001 &1283030164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1411,8 +1429,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593227861}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.28, y: 2.11, z: -0.73}
-  m_LocalScale: {x: 19.921875, y: 5.522434, z: 0.39579797}
+  m_LocalPosition: {x: 10.752, y: 2.11, z: -0.73}
+  m_LocalScale: {x: 21.012177, y: 5.522434, z: 1.3397762}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 22
@@ -1509,8 +1527,11 @@ MonoBehaviour:
   itemType: 0
   isGoal: 1
   isCarryable: 1
+  isFixable: 0
   maxValue: 15
   currentValue: 15
+  damageFactor: 0
+  fixFactor: 0
 --- !u!1 &1657731580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,8 +2122,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990791378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 2.11, z: 9.01}
-  m_LocalScale: {x: 21.25, y: 5.522434, z: 0.39579797}
+  m_LocalPosition: {x: 0.15, y: 2.11, z: 9.457}
+  m_LocalScale: {x: 21.25, y: 5.522434, z: 1.2903013}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 19
