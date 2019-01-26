@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaterObject: {fileID: 86044997}
+  WaterObjectForPlayer: {fileID: 8223432604467008107, guid: 1e117a55050c3d643a6a962ff43d3f27,
+    type: 3}
   WaterLevelLow: 0.6455
   WaterLevelHigh: 0.845
   WaterLevelCurve:

@@ -8,6 +8,7 @@ public interface Action {
 public delegate void ItemAction(GameObject actor, Item item);
 
 public delegate void PlayerAction(Player player, Item item);
+public delegate void CreatureAction(Creature creature, Item item);
 
 public class ActionInstance : Action {
     private readonly ItemAction action;
@@ -24,5 +25,9 @@ public class ActionInstance : Action {
 public static class ActionEx {
     public static PlayerAction AsPlayerAction(this Action action) {
         return (p, i) => action.Execute(p.gameObject, i);
+    }
+
+    public static CreatureAction AsCreatureAction(this Action action) {
+        return (c, i) => action.Execute(c.gameObject, i);
     }
 }

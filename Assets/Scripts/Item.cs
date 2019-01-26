@@ -13,8 +13,9 @@ public enum ItemType {
     Dishtable = 6,
     Fridge = 7,
     Drawer = 8,
-    RepairItem = 9,
-    SleepingSpot = 10
+    Repair = 9,
+    SleepingSpot = 10,
+    Water = 11
 }
 
 public class Item : MonoBehaviour {
@@ -89,12 +90,12 @@ public class Item : MonoBehaviour {
         if (fixFactor == 0) {
             return;
         }
-        if (!player.HasRepairItem()) {
+        if (!player.HasItem(ItemType.Repair)) {
             return;
         }
 
         HandleFixing();
-        GameObject.Destroy(player.GetCarriedItem());
+        GameObject.Destroy(player.GetCarriedItem().gameObject);
         player.SetCarriedItem(null);
     }
 }

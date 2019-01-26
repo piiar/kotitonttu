@@ -20,7 +20,7 @@ public class ScoreScript : MonoBehaviour {
 
         items = new List<Item>();
         foreach (var item in GameObject.FindObjectsOfType<Item>()) {
-            if (item.isGoal) {
+            if (item.isScoreable) {
                 items.Add(item);
             }
         }

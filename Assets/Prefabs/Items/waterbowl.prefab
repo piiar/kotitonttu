@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 3807312780971910134}
   - component: {fileID: 4444654384431141689}
   - component: {fileID: 2549096190761930739}
+  - component: {fileID: 8634586734041192642}
   m_Layer: 0
   m_Name: waterbowl
   m_TagString: Item
@@ -188,11 +189,24 @@ MonoBehaviour:
   isPickedUp: 0
   isGoal: 1
   isCarryable: 0
-  isFixable: 1
-  isUsable: 0
+  isFixable: 0
+  isUsable: 1
   maxValue: 2
   currentValue: 2
   damageFactor: 1
   fixFactor: 1
   timeToDamage: 0
   countdownToDamage: 0
+--- !u!114 &8634586734041192642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283261972105697927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f207795116fd44d8f231fd19a9c950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bowltype: 1
