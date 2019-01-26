@@ -161,9 +161,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  WantAnimate: 0
   Override: 0
   OverrideAnimationState: 1
+  WantAnimate: 0
 --- !u!1001 &9144961659837371962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,7 +173,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: d4393fce1921b644a89c95a8323c0385, type: 3}
       propertyPath: m_Name
-      value: dishtable
+      value: dishtableAnimated
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d4393fce1921b644a89c95a8323c0385, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d4393fce1921b644a89c95a8323c0385, type: 3}
       propertyPath: m_LocalPosition.x

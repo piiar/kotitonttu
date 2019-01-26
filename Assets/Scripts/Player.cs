@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
 
     GameObject carriedObject = null;
 
+    private ItemTrigger itemFinder;
     private new Rigidbody rigidbody;
     private Animator animator;
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
     void Awake() {
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+        itemFinder = GetComponentInChildren<ItemTrigger>();
     }
 
     // Update is called once per frame
@@ -53,31 +55,26 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private Item FindNearestItem(Vector3 center) {
-        float radius = 2f;
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        for (int i = 0; i < hitColliders.Length; i++) {
-            Item item = hitColliders[i].gameObject.GetComponent<Item>();
-            if (item && (item.isCarryable || item.isFixable)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
     private void HandleInteraction() {
         if (carriedObject != null) {
             // Drop
-            carriedObject.transform.SetParent(null);
-            carriedObject = null;
+            StartCoroutine(togglePickupAnimation(() =>
+            {
+                animator.SetLayerWeight(1, 0f);
+                carriedObject.transform.SetParent(null);
+                carriedObject = null;
+            }));
+
         }
         else {
             // Pick up
-            Item item = FindNearestItem(transform.position);
+            Item item = itemFinder.LastItem;
             if (item && item.isCarryable) {
-                item.gameObject.transform.SetParent(transform);
-                carriedObject = item.gameObject;
-                animator.SetBool(pickupHash, false);
+                StartCoroutine(togglePickupAnimation(() => {
+                    animator.SetLayerWeight(1, 1f);
+                    item.gameObject.transform.SetParent(transform);
+                    carriedObject = item.gameObject;
+                }));
             }
             else if (item) {
                 Action action = null;
@@ -87,14 +84,19 @@ public class Player : MonoBehaviour {
                         break;
                     case ItemType.Furniture:
                         break;
-
-
-                    animator.SetBool(pickupHash, true);
                 }
+
                 if (action != null) {
                     action.Execute(this.gameObject, item);
                 }
             }
         }
     }
+
+    IEnumerator togglePickupAnimation(System.Action callback) {
+        animator.SetTrigger(pickupHash);
+        yield return new WaitForSeconds(0.5f);
+        callback();
+    }
+
 }
