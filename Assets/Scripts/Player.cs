@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
     private new Rigidbody rigidbody;
     private Animator animator;
 
+    private bool animationFreezeActive;
+
     // Start is called before the first frame update
     void Awake() {
         rigidbody = GetComponent<Rigidbody>();
@@ -29,6 +31,10 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     public void Move(Vector3 moveDirection, bool interaction) {
+        if (animationFreezeActive) {
+            return;
+        }
+
         ApplyRotationTo(moveDirection);
 
         // Move the controller
@@ -100,11 +106,13 @@ public class Player : MonoBehaviour {
         }
         if (!item && carriedObject != null) {
             // Drop
+            animationFreezeActive = true;
             StartCoroutine(togglePickupAnimation(() => {
                 animator.SetLayerWeight(1, 0f);
                 carriedObject.transform.SetParent(null);
                 carriedObject.GetComponent<Item>().DroppedDown();
                 carriedObject = null;
+                animationFreezeActive = false;
             }));
         }
     }
@@ -120,11 +128,13 @@ public class Player : MonoBehaviour {
     }
 
     private void PickupItem(Item item) {
+        animationFreezeActive = true;
         StartCoroutine(togglePickupAnimation(() => {
             animator.SetLayerWeight(1, 1f);
             item.gameObject.transform.SetParent(transform);
             carriedObject = item.gameObject;
             item.PickedUp();
+            animationFreezeActive = false;
         }));
     }
 
