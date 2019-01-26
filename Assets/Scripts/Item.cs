@@ -21,10 +21,10 @@ public class Item : MonoBehaviour {
     public bool isUsable;
     public int maxValue;
     public int currentValue;
-    private int damageFactor = 1;
-    private int fixFactor = 1;
-    private double timeToDamage = 3f;
-    private double countdownToDamage = 3f;
+    public int damageFactor = 1;
+    public int fixFactor = 1;
+    public double timeToDamage = 3f;
+    public double countdownToDamage = 3f;
 
     public void UpdateCountdownToDamage() {
         if(isPickedUp)
