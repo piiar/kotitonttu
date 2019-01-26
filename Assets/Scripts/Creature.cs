@@ -13,6 +13,7 @@ public class Creature : MonoBehaviour {
     private NavMeshAgent agent;
     private Animator animator;
     private float timeUntilGoalChange = 10f;
+    private GameObject goalTarget;
 
     void Awake() {
         animator = GetComponentInChildren<Animator>();
@@ -25,17 +26,24 @@ public class Creature : MonoBehaviour {
     void Update() {
         timeUntilGoalChange -= Time.deltaTime;
         if (goal && goal.parent == null) { // target is not being carried
+            goalTarget = null;
             agent.SetDestination(goal.position);
         }
         if (timeUntilGoalChange <= 0f) {
+            goalTarget = null;
             timeUntilGoalChange = Random.Range(10f, 15f);
             RandomizeGoal();
         }
         else if (goal && !agent.pathPending && agent.remainingDistance < 1.5f) {
             // Reached goal
-            DoAction(goal.gameObject);
+            goalTarget = goal.gameObject;
+            DoAction(goalTarget);
             goal = null;
             timeUntilGoalChange = 5f;
+        }
+        if(goalTarget)
+        {
+            DoRepeatingAction(goalTarget);
         }
 
         animator.SetFloat(speedHash, Mathf.Min(agent.velocity.magnitude, 1f));
@@ -69,6 +77,26 @@ public class Creature : MonoBehaviour {
                 break;
         }
         if (action != null) {
+            action.Execute(this.gameObject, item);
+        }
+    }
+
+    private void DoRepeatingAction(GameObject goalObject)
+    {
+        Action action = null;
+        Item item = goalObject.GetComponent<Item>();
+        if (item == null)
+        {
+            return;
+        }
+        switch (item.itemType)
+        {
+            case ItemType.Furniture:
+                action = new FurnitureCatAction();
+                break;
+        }
+        if (action != null)
+        {
             action.Execute(this.gameObject, item);
         }
     }
