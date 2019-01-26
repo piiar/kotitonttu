@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
             healthIndicatorCache[item.name].gameObject.transform.SetParent(panel);
             Vector3 screenPos = cam.WorldToScreenPoint(item.transform.position);
             healthIndicatorCache[item.name].GetComponent<RectTransform>().anchoredPosition = new Vector2(screenPos.x + 15, screenPos.y + 25);
+            healthIndicatorCache[item.name].gameObject.SetActive(false);
         }
     }
 
