@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
 {
     Camera cam;
 
-    public RectTransform panel;
+    public RectTransform hudpanel;
+    public RectTransform menupanel;
 
     public Dictionary<string, RectTransform> actionIndicatorCache = new Dictionary<string, RectTransform>();
     public RectTransform[] actionIndicators;
@@ -19,6 +20,8 @@ public class UIManager : MonoBehaviour
     int nextActionIndicatorIndex;
 
     public GameObject healthIndicatorPrefab;
+
+    public bool isPaused { get; private set; }
 
     private static UIManager _instance;
     public static UIManager instance
@@ -48,11 +51,13 @@ public class UIManager : MonoBehaviour
 
         foreach(Item item in items){
             healthIndicatorCache[item.name] = Instantiate(healthIndicatorPrefab).GetComponent<ProgressIndicator>();
-            healthIndicatorCache[item.name].gameObject.transform.SetParent(panel);
+            healthIndicatorCache[item.name].gameObject.transform.SetParent(hudpanel);
             Vector3 screenPos = cam.WorldToScreenPoint(item.transform.position);
             healthIndicatorCache[item.name].GetComponent<RectTransform>().anchoredPosition = new Vector2(screenPos.x + 15, screenPos.y + 25);
             healthIndicatorCache[item.name].gameObject.SetActive(false);
         }
+
+        Pause();
     }
 
     public void UpdateProgessIndicator(string name, float amount) {
@@ -112,5 +117,50 @@ public class UIManager : MonoBehaviour
             Vector3 screenPos = cam.WorldToScreenPoint(t.position);
             rect.anchoredPosition = new Vector2(screenPos.x + 5, screenPos.y + 5);
         }
+    }
+
+    public void StartGame() {
+        Unpause();
+    }
+
+    public void Quit()
+    {
+        //If we are running in a standalone build of the game
+#if UNITY_STANDALONE
+        //Quit the application
+        Application.Quit();
+#endif
+
+        //If we are running in the editor
+#if UNITY_EDITOR
+        //Stop playing the scene
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+
+    public void Pause()
+    {
+
+        menupanel.gameObject.SetActive(true);
+        hudpanel.gameObject.SetActive(false);
+
+        //Set isPaused to true
+        isPaused = true;
+        //Set time.timescale to 0, this will cause animations and physics to stop updating
+        Time.timeScale = 0;
+
+    }
+
+
+    public void Unpause()
+    {
+
+        menupanel.gameObject.SetActive(false);
+        hudpanel.gameObject.SetActive(true);
+        
+        //Set isPaused to false
+        isPaused = false;
+        //Set time.timescale to 1, this will cause animations and physics to continue updating at regular speed
+        Time.timeScale = 1;
     }
 }

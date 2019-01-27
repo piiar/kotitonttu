@@ -18,15 +18,18 @@ public class Creature : MonoBehaviour {
     void Awake() {
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        RandomizeGoal();
-        agent.SetDestination(goal.position);
+        // RandomizeGoal();
+        // agent.SetDestination(goal.position);
     }
 
     // Update is called once per frame
     void Update() {
-        if (agent.isStopped) {
+
+        if (UIManager.instance.isPaused || agent.isStopped)
+        {
             return;
         }
+
         timeUntilGoalChange -= Time.deltaTime;
         if (goal && goal.parent == null) { // target is not being carried
             goalTarget = null;

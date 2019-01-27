@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     public void Move(Vector3 moveDirection, bool interaction) {
-        if (animationFreezeActive) {
+        if (UIManager.instance.isPaused || animationFreezeActive) {
             return;
         }
 

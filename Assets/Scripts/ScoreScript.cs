@@ -36,7 +36,7 @@ public class ScoreScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(isLevelComplete)
+        if(UIManager.instance.isPaused || isLevelComplete)
         {
             return;
         }
