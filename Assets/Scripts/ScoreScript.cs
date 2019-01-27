@@ -10,7 +10,8 @@ public class ScoreScript : MonoBehaviour {
     public static int NumDestroyedObjects;
     public static int Health;
     public static int HealthMax;
-    public static double StarsEarned = 0f;
+    public static float StarsEarned = 0f;
+    public ProgressIndicator Stars;
 
     private List<Item> items;
     float degree = 90f;
@@ -62,15 +63,15 @@ public class ScoreScript : MonoBehaviour {
 
         NumDamagedGoals = tickNumDamagedGoals;
         NumDestroyedObjects = tickDestroyedObjects;
-        if (Score / ScoreMax >= 0.9f)
+        if (Score / ScoreMax >= 0.95f)
         {
             StarsEarned = 1f;
         }
-        else if (Score / ScoreMax >= 0.75f)
+        else if (Score / ScoreMax >= 0.80f)
         {
             StarsEarned = 0.66f;
         }
-        else if (Score / ScoreMax >= 0.5f)
+        else if (Score / ScoreMax >= 0.6f)
         {
             StarsEarned = 0.33f;
         }
@@ -78,7 +79,7 @@ public class ScoreScript : MonoBehaviour {
         {
             StarsEarned = 0f;
         }
-
+        Stars.UpdateFillAmount(StarsEarned);
         if (elapsedLevelTime <= levelTime){
             elapsedLevelTime += Time.deltaTime;
             secondsTransform.localRotation =
