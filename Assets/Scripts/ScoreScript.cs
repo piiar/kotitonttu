@@ -14,8 +14,6 @@ public class ScoreScript : MonoBehaviour {
     public ProgressIndicator Stars;
 
     private List<Item> items;
-    float degree = 90f;
-    public Transform secondsTransform;
 
     float elapsedLevelTime = 0f;
     const float levelTime = 120f;
@@ -82,8 +80,7 @@ public class ScoreScript : MonoBehaviour {
         Stars.UpdateFillAmount(StarsEarned);
         if (elapsedLevelTime <= levelTime){
             elapsedLevelTime += Time.deltaTime;
-            secondsTransform.localRotation =
-                Quaternion.Euler(0f, 0f, (-360f / levelTime * elapsedLevelTime) + 90f);
+            UIManager.instance.UpdateClock(elapsedLevelTime / levelTime);
         }
         else
         {

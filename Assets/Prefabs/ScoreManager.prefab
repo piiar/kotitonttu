@@ -47,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLevelComplete: 0
   Stars: {fileID: 0}
-  secondsTransform: {fileID: 0}
 --- !u!114 &7510767548795574545
 MonoBehaviour:
   m_ObjectHideFlags: 0

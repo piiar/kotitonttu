@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     int nextActionIndicatorIndex;
 
     public GameObject healthIndicatorPrefab;
+    public Image clockImage;
 
     public bool isPaused { get; private set; }
 
@@ -119,6 +120,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateClock(float fill) {
+        clockImage.fillAmount = fill;
+    }
+
     public void StartGame() {
         Unpause();
     }
@@ -157,7 +162,7 @@ public class UIManager : MonoBehaviour
 
         menupanel.gameObject.SetActive(false);
         hudpanel.gameObject.SetActive(true);
-        
+
         //Set isPaused to false
         isPaused = false;
         //Set time.timescale to 1, this will cause animations and physics to continue updating at regular speed
