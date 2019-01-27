@@ -10,7 +10,7 @@ public class ScoreScript : MonoBehaviour {
     public static int NumDestroyedObjects;
     public static int Health;
     public static int HealthMax;
-    public static int StarsEarned = 0; 
+    public static double StarsEarned = 0f;
 
     private List<Item> items;
     float degree = 90f;
@@ -64,19 +64,19 @@ public class ScoreScript : MonoBehaviour {
         NumDestroyedObjects = tickDestroyedObjects;
         if (Score / ScoreMax >= 0.9f)
         {
-            StarsEarned = 3;
+            StarsEarned = 1f;
         }
         else if (Score / ScoreMax >= 0.75f)
         {
-            StarsEarned = 2;
+            StarsEarned = 0.66f;
         }
         else if (Score / ScoreMax >= 0.5f)
         {
-            StarsEarned = 1;
+            StarsEarned = 0.33f;
         }
         else
         {
-            StarsEarned = 0;
+            StarsEarned = 0f;
         }
 
         if (elapsedLevelTime <= levelTime){
