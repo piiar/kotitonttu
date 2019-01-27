@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class ProgressIndicator : MonoBehaviour {
     public RectTransform baseRect;
     public RectTransform healthRect;
+    private Image bar;
 
     void Awake() {
+        bar = healthRect.GetComponent<Image>();
         baseRect = GetComponent<RectTransform>();
     }
 
@@ -28,5 +30,10 @@ public class ProgressIndicator : MonoBehaviour {
     public void UpdateBarPos(Vector3 position)
     {
         baseRect.anchoredPosition = position;
+    }
+
+    public void UpdateFillAmount(float fill)
+    {
+        bar.fillAmount = fill;
     }
 }

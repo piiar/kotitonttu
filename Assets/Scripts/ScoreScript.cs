@@ -10,7 +10,8 @@ public class ScoreScript : MonoBehaviour {
     public static int NumDestroyedObjects;
     public static int Health;
     public static int HealthMax;
-    public static double StarsEarned = 0f;
+    public static float StarsEarned = 0f;
+    public ProgressIndicator Stars;
 
     private List<Item> items;
     float degree = 90f;
@@ -78,7 +79,7 @@ public class ScoreScript : MonoBehaviour {
         {
             StarsEarned = 0f;
         }
-
+        Stars.UpdateFillAmount(StarsEarned);
         if (elapsedLevelTime <= levelTime){
             elapsedLevelTime += Time.deltaTime;
             secondsTransform.localRotation =
