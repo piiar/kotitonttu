@@ -61,7 +61,7 @@ public class ScoreScript : MonoBehaviour {
 
         NumDamagedGoals = tickNumDamagedGoals;
         NumDestroyedObjects = tickDestroyedObjects;
-        if (Score / ScoreMax >= 0.95f)
+        if (Score / ScoreMax >= 0.90f)
         {
             StarsEarned = 1f;
         }
@@ -69,7 +69,7 @@ public class ScoreScript : MonoBehaviour {
         {
             StarsEarned = 0.66f;
         }
-        else if (Score / ScoreMax >= 0.6f)
+        else if (Score / ScoreMax >= 0.50f)
         {
             StarsEarned = 0.33f;
         }

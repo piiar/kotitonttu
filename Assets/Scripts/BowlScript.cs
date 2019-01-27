@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BowlScript : MonoBehaviour {
     public BowlType Bowltype;
+    public bool IsExtra;
 
     private GameObject filler;
     private MeshRenderer fillerRenderer;
