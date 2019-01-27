@@ -24,6 +24,9 @@ public class Creature : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (agent.isStopped) {
+            return;
+        }
         timeUntilGoalChange -= Time.deltaTime;
         if (goal && goal.parent == null) { // target is not being carried
             goalTarget = null;
@@ -119,5 +122,9 @@ public class Creature : MonoBehaviour {
         if (action != null) {
             action.Execute(this.gameObject, item);
         }
+    }
+
+    public void Stop() {
+        agent.isStopped = true;
     }
 }

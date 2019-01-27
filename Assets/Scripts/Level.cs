@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level : MonoBehaviour
-{
-    public int maxScore;
-    public int currentScore;
-    public int timeLimit;
-    public int currentTime;
+public class Level : MonoBehaviour {
+    private Creature[] cats;
+    private ScoreScript scoreScript;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        scoreScript = GetComponent<ScoreScript>();
+        cats = FindObjectsOfType<Creature>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        if (scoreScript.isLevelComplete) {
+            for (int i = 0; i < cats.Length; i++) {
+                cats[i].Stop();
+            }
+        }
     }
 }
