@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreScript : MonoBehaviour {
+    public bool isLevelComplete = false;
     public static double Score;
     public static double ScoreMax;
     public static int NumDamagedGoals;
     public static int NumDestroyedObjects;
     public static int Health;
     public static int HealthMax;
+    public static int StarsEarned = 0; 
 
     private List<Item> items;
     float degree = 90f;
     public Transform secondsTransform;
 
     float elapsedLevelTime = 0f;
-    const float levelTime = 2 * 3600f;
+    const float levelTime = 120f;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,21 +29,24 @@ public class ScoreScript : MonoBehaviour {
         foreach (var item in GameObject.FindObjectsOfType<Item>()) {
             if (item.isScoreable) {
                 items.Add(item);
+                ScoreMax += item.maxValue * levelTime;
             }
         }
     }
 
     // Update is called once per frame
     void Update() {
+        if(isLevelComplete)
+        {
+            return;
+        }
         int tickScore = 0;
-        int tickScoreMax = 0;
         int tickNumDamagedGoals = 0;
         int tickDestroyedObjects = 0;
         foreach (var item in items) {
             if (item.isScoreable)
             {
                 tickScore += (int)item.currentValue;
-                tickScoreMax += (int)item.maxValue;
             }
 
             if (item.currentValue < item.maxValue) {
@@ -52,19 +57,36 @@ public class ScoreScript : MonoBehaviour {
             }
         }
         Health = tickScore;
-        HealthMax = tickScoreMax;
 
         Score += tickScore * Time.deltaTime;
-        ScoreMax += tickScoreMax * Time.deltaTime;
 
         NumDamagedGoals = tickNumDamagedGoals;
         NumDestroyedObjects = tickDestroyedObjects;
+        if (Score / ScoreMax >= 0.9f)
+        {
+            StarsEarned = 3;
+        }
+        else if (Score / ScoreMax >= 0.75f)
+        {
+            StarsEarned = 2;
+        }
+        else if (Score / ScoreMax >= 0.5f)
+        {
+            StarsEarned = 1;
+        }
+        else
+        {
+            StarsEarned = 0;
+        }
 
-        if(elapsedLevelTime <= levelTime){
-            elapsedLevelTime += 6f * Time.deltaTime;
-            degree -= 6f * Time.deltaTime;
+        if (elapsedLevelTime <= levelTime){
+            elapsedLevelTime += Time.deltaTime;
             secondsTransform.localRotation =
-                Quaternion.Euler(0f, 0f, degree);
+                Quaternion.Euler(0f, 0f, (-360f / levelTime * elapsedLevelTime) + 90f);
+        }
+        else
+        {
+            isLevelComplete = true;
         }
     }
 }
