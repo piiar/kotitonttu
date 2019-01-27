@@ -593,6 +593,16 @@ PrefabInstance:
       propertyPath: TrailModule.enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198405478074982118, guid: 1ec79a202ed2f86408c1fe644a6c49e3,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198405478074982118, guid: 1ec79a202ed2f86408c1fe644a6c49e3,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec79a202ed2f86408c1fe644a6c49e3, type: 3}
 --- !u!4 &8565169606133144437 stripped

@@ -32,6 +32,11 @@ public class LevelManager : MonoBehaviour {
         currertLevel = level;
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
+
     public static LevelDescriptor CurrentLevel => GameLevels.Levels[currertLevel];
 }
 
