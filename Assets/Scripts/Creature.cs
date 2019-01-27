@@ -12,7 +12,7 @@ public class Creature : MonoBehaviour {
     private Transform previousGoal;
     private NavMeshAgent agent;
     private Animator animator;
-    private float timeUntilGoalChange = 10f;
+    private float timeUntilGoalChange = 0f;
     private GameObject goalTarget;
 
     void Awake() {
@@ -25,8 +25,7 @@ public class Creature : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (UIManager.instance.isPaused || agent.isStopped)
-        {
+        if (UIManager.instance.isPaused || agent.isStopped) {
             return;
         }
 
