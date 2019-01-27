@@ -22,6 +22,11 @@ public class InputManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire1")) {
             interactionPressed = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.instance.Pause();
+        }
     }
 
     // Update is called once per frame

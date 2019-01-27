@@ -15,9 +15,12 @@ public class Creature : MonoBehaviour {
     private float timeUntilGoalChange = 0f;
     private GameObject goalTarget;
 
+    private ParticleSystem damageEffect;
+
     void Awake() {
         animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        damageEffect = GetComponentInChildren<ParticleSystem>();
         // RandomizeGoal();
         // agent.SetDestination(goal.position);
     }
@@ -123,6 +126,7 @@ public class Creature : MonoBehaviour {
         }
         if (action != null) {
             action.Execute(this.gameObject, item);
+            damageEffect.Play();
         }
     }
 
